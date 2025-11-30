@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    World Lakes
+{% endblock %}
+
+{% block content %}
+    <table><thead>
+        <tr>
+            <th>
+                {% if lakes.has_previous %}
+                <a href="{% url 'lakes:list' %}?page={{ lakes.previous_page_number }}">Previous Page</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if lakes.has_next %}
+                <a href="{% url 'lakes:list' %}?page={{ lakes.next_page_number }}">Next Page</a>
+                {% endif %}
+            </th>
+        </tr></thead>
+    </table>
+    <section>
+       <h1>World Lakes</h1>
+
+        <table class="tg"><thead>
+            <tr>
+                <th class="tg-0lax">Lake Name</th>
+                <th class="tg-0lax">Country</th>
+            </tr></thead>
+            <tbody>
+                
+                {% for lake in lakes %}
+                <tr>
+                    <td class="tg-0lax">{{ lake.name }}</td>
+                    <td class="tg-0lax">{{ lake.country }}</td>
+                </tr>
+                {% endfor %}  
+                
+            </tbody>
+        </table>
+
+    </section>
+        <table><thead>
+            <tr>
+                <th>
+                    {% if lakes.has_previous %}
+                    <a href="{% url 'lakes:list' %}?page={{ lakes.previous_page_number }}">Previous Page</a>
+                    {% endif %}
+                </th>
+                <th>
+                    {% if lakes.has_next %}
+                    <a href="{% url 'lakes:list' %}?page={{ lakes.next_page_number }}">Next Page</a>
+                    {% endif %}
+                </th>
+            </tr></thead>
+        </table>
+<footer>
+  <p>Data sourced from <a href="https://wldb.ilec.or.jp">International Lake Environment Committee Foundation</a> page.</p>
+</footer>
+
+{% endblock %}
