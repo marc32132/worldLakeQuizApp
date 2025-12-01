@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    World Lakes
+{% endblock %}
+
+{% block content %}
+    <section>
+        {% if is_correct %}
+        <h1>Correct!</h1>
+        {% else %}
+        <h1>Wrong Answer</h1>
+        <p>The correct answer was {{ correct_answer }}</p>
+        {% endif %}
+
+        <a href="{% url 'quiz:quiz_lakes' %}">Try again</a>
+
+    </section>
+      
+
+{% endblock %}

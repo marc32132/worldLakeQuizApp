@@ -25,5 +25,6 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root':settings.STATIC_ROOT}),
     path('admin/', admin.site.urls),
     path('', views.homepage),
-    path('lake_info/', include('lakes.urls'))
+    path('lake_info/', include('lakes.urls')),
+    path('quiz_lakes/', include('quiz.urls'))
 ]

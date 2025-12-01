@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <table><thead>
+    <table class="pagination-table"><thead>
         <tr>
             <th>
                 {% if lakes.has_previous %}
@@ -40,7 +40,7 @@
         </table>
 
     </section>
-        <table><thead>
+        <table class="pagination-table"><thead>
             <tr>
                 <th>
                     {% if lakes.has_previous %}
@@ -54,8 +54,6 @@
                 </th>
             </tr></thead>
         </table>
-<footer>
-  <p>Data sourced from <a href="https://wldb.ilec.or.jp">International Lake Environment Committee Foundation</a> page.</p>
-</footer>
+
 
 {% endblock %}

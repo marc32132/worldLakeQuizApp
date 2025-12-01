@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    World Lakes
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h1>World Lakes Quiz</h1>
+        <h2>What country is {{ question.name }} located in?</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for option in options %}
+            <label class="container">
+                <input type="radio" name="answer" value="{{ option }}" required>
+                <span class="checkmark"></span>
+                {{ option }}
+            </label><br>
+            {% endfor %}
+            <button class="form-submit">Submit</button>
+        </form>
+      
+    </section>
+      
+
+{% endblock %}

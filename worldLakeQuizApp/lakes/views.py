@@ -13,4 +13,8 @@ def lake_info(request):
     except EmptyPage:
         page = p.page(1)
 
-    return render(request, 'lakes/lake_info.html', {'lakes': page })
+    context = {
+        'lakes': page 
+    }
+
+    return render(request, 'lakes/lake_info.html', context)

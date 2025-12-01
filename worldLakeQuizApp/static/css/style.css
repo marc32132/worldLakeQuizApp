@@ -9,6 +9,8 @@ body {
     font-size: 3rem;
     background-color: black;
     color: whitesmoke;
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
@@ -29,8 +31,9 @@ main {
 section{
     display: flex;
     flex-flow: column;
-
     gap: 1rem;
+    width: max-content;
+    margin: auto;
 }
 
 h2 {
@@ -43,7 +46,8 @@ p {
 
 a {
     text-decoration: none;
-    color: #f7faf9;
+    color: #c49c6f;
+
 }
 
 a:hover {
@@ -63,7 +67,6 @@ a:hover {
     border-width:1px;
     color:#444;
     font-family:Arial, sans-serif;
-    /* font-size:14px; */
     overflow:hidden;
     padding:10px 5px;
     word-break:normal;
@@ -75,7 +78,6 @@ a:hover {
     border-width:1px;
     color:#fff;
     font-family:Arial, sans-serif;
-    /* font-size:14px; */
     font-weight:normal;
     overflow:hidden;
     padding:10px 5px;
@@ -84,4 +86,90 @@ a:hover {
 .tg .tg-0lax{
     text-align:left;
     vertical-align:top
+}
+
+.pagination-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 1rem;
+} 
+
+.footer {
+    /* position: fixed; */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(22, 201, 255);
+    color: white;
+    text-align: center;
+}
+
+.form-submit {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;  
+    padding: 0.5rem;
+    border-radius: 10px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.form-submit:hover {
+    opacity: .85;
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+    opacity: .85;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
 }
