@@ -46,7 +46,7 @@ p {
 
 a {
     text-decoration: none;
-    color: #c49c6f;
+    color: #FFD166;
 
 }
 
@@ -55,12 +55,12 @@ a:hover {
 }
 
 
-.tg  {
+.content-table {
     border-collapse:collapse;
     border-spacing:0;
 }
 
-.tg td{
+.content-table td{
     background-color:#9ba5af;
     border-color:#9ABAD9;
     border-style:solid;
@@ -71,7 +71,7 @@ a:hover {
     padding:10px 5px;
     word-break:normal;
 }
-.tg th{
+.content-table th{
     background-color:#0f4988;
     border-color:#9ABAD9;
     border-style:solid;
@@ -83,7 +83,7 @@ a:hover {
     padding:10px 5px;
     word-break:normal;
 }
-.tg .tg-0lax{
+.content-table .content-table-row{
     text-align:left;
     vertical-align:top
 }
@@ -105,7 +105,19 @@ a:hover {
     text-align: center;
 }
 
+.quiz-form {
+    padding-bottom: 100px;
+}
+
+.quiz-lake-name {
+    color:#44B78B;
+    text-decoration: underline;
+}
+
 .form-submit {
+    position: sticky;
+    bottom: 30px; 
+    float: right;
     font-family: 'Arial', sans-serif;
     font-size: 1.5rem;
     font-weight: bold;  

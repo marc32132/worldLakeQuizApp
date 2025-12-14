@@ -22,17 +22,17 @@
     <section>
        <h1>World Lakes</h1>
 
-        <table class="tg"><thead>
+        <table class="content-table"><thead>
             <tr>
-                <th class="tg-0lax">Lake Name</th>
-                <th class="tg-0lax">Country</th>
+                <th class="content-table-row">Lake Name</th>
+                <th class="content-table-row">Country</th>
             </tr></thead>
             <tbody>
                 
                 {% for lake in lakes %}
                 <tr>
-                    <td class="tg-0lax">{{ lake.name }}</td>
-                    <td class="tg-0lax">{{ lake.country }}</td>
+                    <td class="content-table-row">{{ lake.name }}</td>
+                    <td class="content-table-row">{{ lake.country }}</td>
                 </tr>
                 {% endfor %}  
                 
@@ -40,20 +40,20 @@
         </table>
 
     </section>
-        <table class="pagination-table"><thead>
-            <tr>
-                <th>
-                    {% if lakes.has_previous %}
-                    <a href="{% url 'lakes:list' %}?page={{ lakes.previous_page_number }}">Previous Page</a>
-                    {% endif %}
-                </th>
-                <th>
-                    {% if lakes.has_next %}
-                    <a href="{% url 'lakes:list' %}?page={{ lakes.next_page_number }}">Next Page</a>
-                    {% endif %}
-                </th>
-            </tr></thead>
-        </table>
+    <table class="pagination-table"><thead>
+        <tr>
+            <th>
+                {% if lakes.has_previous %}
+                <a href="{% url 'lakes:list' %}?page={{ lakes.previous_page_number }}">Previous Page</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if lakes.has_next %}
+                <a href="{% url 'lakes:list' %}?page={{ lakes.next_page_number }}">Next Page</a>
+                {% endif %}
+            </th>
+        </tr></thead>
+    </table>
 
 
 {% endblock %}

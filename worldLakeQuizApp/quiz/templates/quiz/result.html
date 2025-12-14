@@ -5,17 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    <section>
-        {% if is_correct %}
-        <h1>Correct!</h1>
+<h2>Your Score: {{ score }} / {{ total }}</h2>
+
+{% for r in results %}
+    <p>
+        {{ r.question_name }} —
+        {% if r.is_correct %}
+            ✅ Correct ({{ r.correct_answer }})
         {% else %}
-        <h1>Wrong Answer</h1>
-        <p>The correct answer was {{ correct_answer }}</p>
+            ❌ Incorrect (Correct: {{ r.correct_answer }})
         {% endif %}
-
-        <a href="{% url 'quiz:quiz_lakes' %}">Try again</a>
-
-    </section>
-      
+    </p>
+{% endfor %}
+<a href="{% url 'quiz:quiz_lakes' %}">Try again</a>
 
 {% endblock %}
