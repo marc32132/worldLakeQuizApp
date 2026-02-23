@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
     <table class="pagination-table"><thead>
         <tr>
             <th>
@@ -55,5 +56,22 @@
         </tr></thead>
     </table>
 
+=======
+    <h2>World Lakes</h2>
+>>>>>>> d78473a (modifying design and adding search feature)
 
+    <form method="get" id="searchForm">
+        <input 
+            type="text" 
+            name="q" 
+            placeholder="Search lakes..." 
+            value="{{ query }}" 
+            hx-get="{% url 'lakes:list' %}"
+            hx-trigger="keyup changed delay:300ms"
+            hx-target="#tableContainer"
+            hx-push-url="true">
+    </form>
+    <div id="tableContainer">
+        {% include "lakes/partials/lake_table.html" %}
+    </div>
 {% endblock %}
