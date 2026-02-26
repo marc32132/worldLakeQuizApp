@@ -1,9 +1,0 @@
-__pycache__/
-*.py[cod]
-*.pyo
-*.sqlite3
-.env
-.venv
-env/
-*.log
-lib/
