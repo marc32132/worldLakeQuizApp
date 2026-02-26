@@ -1,49 +1,50 @@
-## 🌍 Quiz o jeziorach świata – Django App
+## 🌍 Lakes of the World Quiz – Django App
 
-Opis:
-Aplikacja webowa w Django, która umożliwia użytkownikom rozwiązywanie quizu o jeziorach świata. Dane zostały pobrane ze strony internetowej (scraping) 'International Lake Environment Comittee Foundation'. Quiz generuje 5 pytań z 4 możliwymi odpowiedziami, a dodatkowo można przeglądać wszystkie jeziora i ich lokalizację z wyszukiwarką.
+Description:
+A web application built with Django that allows users to take a quiz about lakes around the world. The data was collected via web scraping from the International Lake Environment Committee Foundation. The quiz generates 5 questions with 4 multiple-choice answers. Users can also browse all lakes and their locations with a search function.
 
-### 🛠 Technologie
+### 🛠 Technologies
 
 Backend: Python 3.11+, Django  
 Baza danych: SQLite3  
 Kontrola wersji: Git  
 
 
-### ⚡ Funkcjonalności
+### ⚡ Features
 
-Generowanie quizu z 5 pytań i 4 odpowiedziami.  
-Możliwość przeglądania wszystkich jezior i ich lokalizacji.  
-Wyszukiwarka konkretnych jezior.  
-Prosta i czytelna strona webowa do interakcji z quizem.  
+Generates a quiz with 5 questions and 4 multiple-choice answers  
+Browse all lakes and their locations  
+Search for specific lakes  
+Simple and user-friendly web interface  
 
 
-### 🚀 Uruchomienie lokalne
+### 🚀 Local Setup
 
-Sklonuj repozytorium
+Clone the repository
 ```
 git clone https://github.com/marc32132/worldLakeQuizApp.git
 cd worldLakeQuizApp
 ```
-Utwórz i aktywuj wirtualne środowisko
+Create and activate a virtual environment
 
 ```
 python -m venv venv 
 source venv/bin/activate  # Linux / macOS 
 venv\Scripts\activate     # Windows
 ```
-Zainstaluj zależności
+Install dependencies
 ```
 pip install -r requirements.txt
 ```
-Uruchom serwer Django
+Run the Django server
 ```
 python manage.py runserver
 ```
-Otwórz przeglądarkę: `http://127.0.0.1:8000/`
+Open your browser at: `http://127.0.0.1:8000/`
 
 
 
 
  
-GitHub: https://github.com/marc32132
+📌GitHub:  
+https://github.com/marc32132
