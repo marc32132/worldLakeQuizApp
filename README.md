@@ -6,8 +6,8 @@ A web application built with Django that allows users to take a quiz about lakes
 ### 🛠 Technologies
 
 Backend: Python 3.11+, Django  
-Baza danych: SQLite3  
-Kontrola wersji: Git  
+Database: SQLite3  
+Version control: Git  
 
 
 ### ⚡ Features
