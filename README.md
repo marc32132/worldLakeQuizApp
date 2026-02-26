@@ -1,7 +1,7 @@
 ## 🌍 Quiz o jeziorach świata – Django App
 
 Opis:
-Aplikacja webowa w Django, która umożliwia użytkownikom rozwiązywanie quizu o jeziorach świata. Dane zostałe pobrane ze strony internetowej (scraping) 'International Lake Environment Comittee Foundation' i przechowywane są w bazie SQLite3. Quiz generuje 5 pytań z 4 możliwymi odpowiedziami, a dodatkowo można przeglądać wszystkie jeziora i ich lokalizację z wyszukiwarką.
+Aplikacja webowa w Django, która umożliwia użytkownikom rozwiązywanie quizu o jeziorach świata. Dane zostały pobrane ze strony internetowej (scraping) 'International Lake Environment Comittee Foundation'. Quiz generuje 5 pytań z 4 możliwymi odpowiedziami, a dodatkowo można przeglądać wszystkie jeziora i ich lokalizację z wyszukiwarką.
 
 ### 🛠 Technologie
 
