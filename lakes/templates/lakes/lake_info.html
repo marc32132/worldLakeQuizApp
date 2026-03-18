@@ -5,56 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <table class="pagination-table"><thead>
-        <tr>
-            <th>
-                {% if lakes.has_previous %}
-                <a href="{% url 'lakes:list' %}?page={{ lakes.previous_page_number }}">Previous Page</a>
-                {% endif %}
-            </th>
-            <th>
-                {% if lakes.has_next %}
-                <a href="{% url 'lakes:list' %}?page={{ lakes.next_page_number }}">Next Page</a>
-                {% endif %}
-            </th>
-        </tr></thead>
-    </table>
-    <section>
-       <h1>World Lakes</h1>
-
-        <table class="content-table"><thead>
-            <tr>
-                <th class="content-table-row">Lake Name</th>
-                <th class="content-table-row">Country</th>
-            </tr></thead>
-            <tbody>
-                
-                {% for lake in lakes %}
-                <tr>
-                    <td class="content-table-row">{{ lake.name }}</td>
-                    <td class="content-table-row">{{ lake.country }}</td>
-                </tr>
-                {% endfor %}  
-                
-            </tbody>
-        </table>
-
-    </section>
-    <table class="pagination-table"><thead>
-        <tr>
-            <th>
-                {% if lakes.has_previous %}
-                <a href="{% url 'lakes:list' %}?page={{ lakes.previous_page_number }}">Previous Page</a>
-                {% endif %}
-            </th>
-            <th>
-                {% if lakes.has_next %}
-                <a href="{% url 'lakes:list' %}?page={{ lakes.next_page_number }}">Next Page</a>
-                {% endif %}
-            </th>
-        </tr></thead>
-    </table>
-
+    <h2>World Lakes</h2>
 
     <form method="get" id="searchForm">
         <input 
