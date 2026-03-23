@@ -6,7 +6,7 @@ A web application built with Django that allows users to take a quiz about lakes
 ### 🛠 Technologies
 
 Backend: Python 3.11+, Django  
-Database: OracleSQL  
+Database: Oracle ATP / SQLite3 (optional)  
 Version control: Git  
 
 
@@ -36,25 +36,32 @@ Install dependencies
 ```
 pip install -r requirements.txt
 ```
-App currently is meant to work with OracleSQL database but you can comment the part of the code that sets the database as Oracle 
-```
+⚠️ **Database Setup Note**  
+
+- The app is configured to use **Oracle ATP** by default.  
+- To run locally with the included sample data, use **SQLite3** instead.  
+
+**Steps:**
+1. Open `worldLakeQuizApp/settings.py`.  
+2. Comment out the Oracle section and uncomment the SQLite3 section:
+
+```python
+# Oracle (default)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         ...
     }
 }
-```
-and uncomment the part that sets the database as sqlite3 
-```
+
+# SQLite3 (for local testing with included data)
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-         ...
-     }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        ...
+    }
 }
 ```
-
 Run the Django server
 ```
 python manage.py runserver
