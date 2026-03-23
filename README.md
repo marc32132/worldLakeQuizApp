@@ -6,7 +6,7 @@ A web application built with Django that allows users to take a quiz about lakes
 ### 🛠 Technologies
 
 Backend: Python 3.11+, Django  
-Database: SQLite3  
+Database: OracleSQL  
 Version control: Git  
 
 
@@ -36,6 +36,25 @@ Install dependencies
 ```
 pip install -r requirements.txt
 ```
+App currently is meant to work with OracleSQL database but you can comment the part of the code that sets the database as Oracle 
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        ...
+    }
+}
+```
+and uncomment the part that sets the database as sqlite3 
+```
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         ...
+     }
+}
+```
+
 Run the Django server
 ```
 python manage.py runserver
