@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,12 +78,29 @@ WSGI_APPLICATION = 'worldLakeQuizApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+os.environ['TNS_ADMIN'] = config('TNS_ADMIN')
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': config('ORACLE_TNS'),
+        'USER': config('ORACLE_USER'),
+        'PASSWORD': config('ORACLE_PASSWORD'),
+        'OPTIONS': {
+            "config_dir": config('TNS_ADMIN'),
+            "wallet_location": config('TNS_ADMIN'),
+            "wallet_password": config('WALLET_PASSWORD'),
+        }
     }
 }
+
 
 
 # Password validation
