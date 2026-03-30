@@ -5,9 +5,11 @@
 {% endblock %}
 
 {% block content %}
+
 <h2>Your Score: {{ score }} / {{ total }}</h2>
 
 {% for r in results %}
+    <!-- Display each question with user's answer status -->
     <p>
         {{ r.question_name }} —
         {% if r.is_correct %}
@@ -17,6 +19,7 @@
         {% endif %}
     </p>
 {% endfor %}
+
 <a href="{% url 'quiz:quiz_lakes' %}" class="try-again">Try again</a>
 
 {% endblock %}

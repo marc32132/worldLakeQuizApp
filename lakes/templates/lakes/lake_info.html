@@ -7,6 +7,7 @@
 {% block content %}
     <h2>World Lakes</h2>
 
+    <!-- Search bar -->
     <form method="get" id="searchForm">
         <input 
             type="text" 
@@ -18,6 +19,8 @@
             hx-target="#tableContainer"
             hx-push-url="true">
     </form>
+
+    <!-- Container for lake table; targeted by HTMX for dynamic pagination/search updates -->
     <div id="tableContainer">
         {% include "lakes/partials/lake_table.html" %}
     </div>

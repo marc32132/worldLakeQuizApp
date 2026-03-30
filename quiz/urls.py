@@ -1,3 +1,10 @@
+"""
+URL routing for the quiz app.
+
+Routes:
+- '' (quiz_lakes): main quiz interface (GET/POST)
+- 'results/' (quiz_results): displays quiz results
+"""
 from django.urls import path
 from . import views
 
