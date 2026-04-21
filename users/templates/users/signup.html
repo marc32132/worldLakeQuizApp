@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h4>Sign up</h4>
+
+
+<form method="post" class="form">
+    {% csrf_token %}
+
+    {# Display general form errors (e.g. password mismatch) #}
+    {% if form.non_field_errors %}
+        <div class="error">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    {# Form field rendering #}
+    {% for field in form %}
+
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">
+                {{ field.label }}
+            </label>
+
+            {{ field }}
+
+            {# Display additional help text defined in the form (e.g. password rules) #}
+            {% if field.help_text %}
+                <small class="help">
+                    {{ field.help_text }}
+                </small>
+            {% endif %}
+
+            {# Display validation errors for this specific field #}
+            {% if field.errors %}
+                <div class="error">
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+    {% endfor %}
+
+    <button type="submit" class="btn-primary">Create account</button>
+</form>
+
+<br> 
+
+<p>
+    Already have an account?
+    <a href="{% url 'users:login' %}">Login here</a>
+</p>
+
+{% endblock %}

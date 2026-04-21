@@ -8,12 +8,13 @@
 
     <h2>World Lakes Quiz</h1>
     
-    <!-- Quiz form: displays multiple-choice questions dynamically from quiz_data -->
+    {# Quiz form: displays multiple-choice questions dynamically from quiz_data #}
     <form class="quiz-form" method="post" action="{% url 'quiz:quiz_lakes' %}">
         {% csrf_token %}
 
         {% for q in quiz_data %}
-            <!-- Single question block -->
+
+            {# Single question block #}
             <div class="question-block">
                 <br><h3> {{ forloop.counter }}. What country is <span class="quiz-lake-name">{{ q.name }}</span> located in?</h3><br>
         

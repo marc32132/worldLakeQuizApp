@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 import random
 from lakes.models import Lake
+from .models import QuizResult
 
 # Number of quiz questionst per session
 QUESTIONS_NUM = 5
@@ -40,12 +42,22 @@ def quiz_lakes(request):
                 "correct_answer": correct_country,
                 "is_correct": is_correct,
             })
+        
+        total = len(correct_answers)
 
-        # Save results in session for the results view
+        # Save results to database
+        if request.user.is_authenticated:
+            QuizResult.objects.create(
+                user = request.user,
+                score = score,
+                total = total
+            )
+
+        # Save results in session for display
         request.session["quiz_results"] = {
             "results": results,
             "score": score,
-            "total": len(correct_answers)
+            "total": total
         }
 
         # Remove answers to prevent resubmission issues
@@ -53,7 +65,7 @@ def quiz_lakes(request):
         
         return redirect("quiz:quiz_results")
 
-    # Generate random questions (database-level random ordering)
+    # Generate random questions
     questions = list(Lake.objects.order_by('?')[:QUESTIONS_NUM])
     quiz_data = []
     correct_answers = {}
@@ -68,14 +80,11 @@ def quiz_lakes(request):
             .distinct()
         )
 
-        # Randomly pick incorrect options
         wrong_answers = random.sample(other_countries, OPTIONS_NUM - 1)
 
-        # Combine correct and incorrect answers and shuffle
         options = wrong_answers + [question.country]       
         random.shuffle(options)
 
-        # Prepare data for template rendering
         quiz_data.append({
             "id": question.id,
             "name": question.name,
@@ -107,3 +116,14 @@ def quiz_results(request):
     request.session.pop("quiz_results", None)
 
     return render(request, "quiz/result.html", quiz_data)
+
+
+@login_required
+def saved_results(request):
+    results = QuizResult.objects.filter(
+        user=request.user
+    ).order_by("-created_at")
+
+    return render(request, "quiz/saved_results.html", {
+        "results": results
+    })

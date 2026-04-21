@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h4>Login</h4>
+
+<form method="post" class="form">
+    {% csrf_token %}
+
+    {# Display general (non-field) errors, e.g. invalid login credentials #}
+    {% if form.non_field_errors %}
+        <div class="error">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    {# Form field rendering #}
+    {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+
+            {{ field }}
+
+            {# Display validation errors for this specific field #}
+            {% for error in field.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn-primary">Login</button>
+</form>
+{% endblock %}
