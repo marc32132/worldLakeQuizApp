@@ -45,15 +45,7 @@ pip install -r requirements.txt
 1. Open `worldLakeQuizApp/settings.py`.  
 2. Comment out the Oracle section and uncomment the SQLite3 section:
 
-```python
-# Oracle (default)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        ...
-    }
-}
-
+```
 # SQLite3 (for local testing with included data)
 DATABASES = {
     'default': {
@@ -61,7 +53,23 @@ DATABASES = {
         ...
     }
 }
+
+
+# Oracle (default)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        ...
+    }
+}
 ```
+Run the migrations and insert data:
+```
+python manage.py migrate
+python manage.py import_csv
+```
+
+
 Run the Django server
 ```
 python manage.py runserver
