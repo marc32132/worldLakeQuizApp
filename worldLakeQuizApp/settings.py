@@ -31,8 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django_htmx",
     'lakes',
-    'quiz'
+    'quiz',
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,3 +138,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # Default primary key field type
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Authentication settings
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'users:login'

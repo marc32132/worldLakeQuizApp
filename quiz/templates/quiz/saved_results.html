@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h4>My Quiz History</h4>
+<br>
+{% if results %}
+
+    <ul>
+        {% for result in results %}
+            <li>
+                <a href="{% url 'quiz:result_detail' result.id %}">
+                    {{ result.score }}/{{ result.total }} - {{ result.created_at|date:"Y-m-d H:i" }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>You have no saved results yet.</p>
+{% endif %}
+
+{% endblock %}

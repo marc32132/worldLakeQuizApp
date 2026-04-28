@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 import random
 from lakes.models import Lake
+from .models import QuizResult, QuizAnswer
 
 # Number of quiz questionst per session
 QUESTIONS_NUM = 5
@@ -13,7 +15,7 @@ def quiz_lakes(request):
     """
     Handles the quiz flow:
     - GET: generates random lake questions with multiple-choice answers
-    - POST: evaluates submitted answers and stores results in session
+    - POST: evaluates submitted answers, stores results in session and saves them to database for authenticated users
     """
 
     # Handle quiz submission
@@ -31,21 +33,44 @@ def quiz_lakes(request):
 
             if is_correct:
                 score += 1
+            
+            lake = Lake.objects.get(id=q_id)
 
             # Store detailed result for each question
             results.append({
-                "question_id": q_id,
-                "question_name": Lake.objects.get(id=q_id).name,
+                "question": lake,
                 "user_answer": user_answer,
                 "correct_answer": correct_country,
-                "is_correct": is_correct,
-            })
+                "is_correct": is_correct
+                })
+        
+        total = len(correct_answers)
 
-        # Save results in session for the results view
+        # Save results to database
+        if request.user.is_authenticated:
+            quiz_result = QuizResult.objects.create(
+                user = request.user,
+                score = score,
+                total = total
+            )
+            for r in results:
+                quiz_result.answers.create(
+                    question=r["question"],
+                    user_answer=r["user_answer"],
+                    correct_answer=r["correct_answer"],
+                    is_correct=r["is_correct"]
+                )
+
+        # Save results in session for display
         request.session["quiz_results"] = {
-            "results": results,
+            "results": [{
+                        "question": r["question"].name,
+                        "user_answer": r["user_answer"],
+                        "correct_answer": r["correct_answer"],
+                        "is_correct": r["is_correct"]
+                        } for r in results],
             "score": score,
-            "total": len(correct_answers)
+            "total": total
         }
 
         # Remove answers to prevent resubmission issues
@@ -53,7 +78,7 @@ def quiz_lakes(request):
         
         return redirect("quiz:quiz_results")
 
-    # Generate random questions (database-level random ordering)
+    # Generate random questions
     questions = list(Lake.objects.order_by('?')[:QUESTIONS_NUM])
     quiz_data = []
     correct_answers = {}
@@ -68,14 +93,11 @@ def quiz_lakes(request):
             .distinct()
         )
 
-        # Randomly pick incorrect options
         wrong_answers = random.sample(other_countries, OPTIONS_NUM - 1)
 
-        # Combine correct and incorrect answers and shuffle
         options = wrong_answers + [question.country]       
         random.shuffle(options)
 
-        # Prepare data for template rendering
         quiz_data.append({
             "id": question.id,
             "name": question.name,
@@ -107,3 +129,26 @@ def quiz_results(request):
     request.session.pop("quiz_results", None)
 
     return render(request, "quiz/result.html", quiz_data)
+
+
+@login_required
+def saved_results(request):
+    results = QuizResult.objects.filter(
+        user=request.user
+    ).order_by("-created_at")
+
+    return render(request, "quiz/saved_results.html", {
+        "results": results
+    })
+
+@login_required
+def result_detail(request, result_id):
+    result = get_object_or_404(
+        QuizResult,
+        id=result_id,
+        user=request.user
+    )
+
+    return render(request, "quiz/result_detail.html", {
+        "result": result
+    })

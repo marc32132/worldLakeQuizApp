@@ -16,7 +16,7 @@ def lake_info(request):
 
     # Get search query from GET parameters (default is empty string)
     query = request.GET.get('q','')
-    lakes = Lake.objects.all()
+    lakes = Lake.objects.all().order_by('name')
 
     # Filter lakes by name or country if query is provided
     if query:
