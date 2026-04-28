@@ -5,22 +5,23 @@
 {% endblock %}
 
 {% block content %}
+
 <h2>Your Score: {{ score }} / {{ total }}</h2>
 
 {% for r in results %}
+
+    {# Display each question with user's answer status #}
     <p>
-        {{ r.question_name }} —
+        {{ r.question }} —
         {% if r.is_correct %}
             ✅ Correct ({{ r.correct_answer }})
         {% else %}
-            ❌ Incorrect (Correct: {{ r.correct_answer }})
+            ❌ Incorrect (You chose: {{ r.user_answer }}, Correct: {{ r.correct_answer }})
         {% endif %}
     </p>
+    <br>
 {% endfor %}
-<<<<<<< HEAD
-<a href="{% url 'quiz:quiz_lakes' %}">Try again</a>
-=======
+
 <a href="{% url 'quiz:quiz_lakes' %}" class="try-again">Try again</a>
->>>>>>> d78473a (modifying design and adding search feature)
 
 {% endblock %}

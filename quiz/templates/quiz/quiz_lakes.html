@@ -5,38 +5,16 @@
 {% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
-    <section>
-        <h1>World Lakes Quiz</h1>
-        
-        <form class="quiz-form" method="post" action="{% url 'quiz:quiz_lakes' %}">
-            {% csrf_token %}
-
-            {% for q in quiz_data %}
-                <div class="question-block">
-                    <br><h3> {{ forloop.counter }}. What country is <span class="quiz-lake-name">{{ q.name }}</span> located in?</h3><br>
-            
-                    {% for option in q.options %}
-                    <label class="container">
-                        <input type="radio" name="{{q.id}}" value="{{ option }}">
-                        <span class="checkmark"></span>
-                        {{ option }}
-                    </label>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-            <button class="form-submit">Submit</button>
-        </form>
-      
-    </section>
-=======
 
     <h2>World Lakes Quiz</h1>
     
+    {# Quiz form: displays multiple-choice questions dynamically from quiz_data #}
     <form class="quiz-form" method="post" action="{% url 'quiz:quiz_lakes' %}">
         {% csrf_token %}
 
         {% for q in quiz_data %}
+
+            {# Single question block #}
             <div class="question-block">
                 <br><h3> {{ forloop.counter }}. What country is <span class="quiz-lake-name">{{ q.name }}</span> located in?</h3><br>
         
@@ -52,7 +30,6 @@
         <button class="form-submit">Submit</button>
     </form>
     
->>>>>>> d78473a (modifying design and adding search feature)
       
 
 {% endblock %}

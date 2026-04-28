@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    My Result
+{% endblock %}
+
+{% block content %}
+<h4>Score: {{ result.score }} / {{ result.total }}</h4>
+
+{% for a in result.answers.all %}
+    <p>
+        {{ a.question.name }} —
+        {% if a.is_correct %}
+            ✅ Correct ({{ a.correct_answer }})
+        {% else %}
+            ❌ Incorrect (You chose: {{ a.user_answer }}, Correct: {{ a.correct_answer }})
+        {% endif %}
+    </p>
+    <br>
+{% endfor %}
+
+
+{% endblock %}
