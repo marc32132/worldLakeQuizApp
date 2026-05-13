@@ -13,11 +13,45 @@ Version control: Git
 ### ⚡ Features
 
 Generates a quiz with 5 questions and 4 multiple-choice answers  
-Supports both guests and registered users
-Browse all lakes and their locations with a search function
+Supports both guests and registered users  
+Browse all lakes and their locations with a search function  
 Simple and user-friendly web interface  
 
 ### 🖼️ Core Interface Views
+
+<details>
+<summary><b>🏠 Click to view Home Pages for guest and authenticated user</b></summary>
+
+![Front Page](.github/assets/FrontPage.png)
+![Front Page](.github/assets/FrontPage_LoggedUser.png)
+</details>
+
+<details>
+<summary><b>🔍 Click to view Lake Browsing Page</b></summary>
+
+![Lake Browsing Page](.github/assets/LakeBrowsingPage.png)
+</details>
+
+<details>
+<summary><b>✍️ Click to view Quiz Page</b></summary>
+
+![Quiz Page 1](.github/assets/Quiz_1.png)
+![Quiz Page 2](.github/assets/Quiz_2.png)
+</details>
+
+<details>
+<summary><b>🏆 Click to view Quiz Results Page and Saved Results Page (for logged in user)</b></summary>
+
+![Results Page](.github/assets/QuizResults.png)
+![Saved Results Page](.github/assets/QuizResults_SavedForUser.png)
+</details>
+
+<details>
+<summary><b>🔐 Click to view SignUp and SignIn Pages</b></summary>
+
+![Front Page](.github/assets/SignUp.png)
+![Front Page](.github/assets/SignIn.png)
+</details>
 
 
 ### 🚀 Local Setup
