@@ -1,7 +1,7 @@
 ## 🌍 Lakes of the World Quiz – Django App
 
 Description:
-A web application built with Django that allows users to take a quiz about lakes around the world. The data was collected via web scraping from the International Lake Environment Committee Foundation. The quiz generates 5 questions with 4 multiple-choice answers. Users can also browse all lakes and their locations with a search function.
+A web application built with Django that allows users to take a quiz about lakes' location around the world. The data was collected from the International Lake Environment Committee Foundation. The quiz generates 5 questions with 4 multiple-choice answers. Users can also browse all lakes and their locations with a search function. It supports both guests and registered users.
 
 ### 🛠 Technologies
 
@@ -13,9 +13,11 @@ Version control: Git
 ### ⚡ Features
 
 Generates a quiz with 5 questions and 4 multiple-choice answers  
-Browse all lakes and their locations  
-Search for specific lakes  
+Supports both guests and registered users
+Browse all lakes and their locations with a search function
 Simple and user-friendly web interface  
+
+### 🖼️ Core Interface Views
 
 
 ### 🚀 Local Setup
