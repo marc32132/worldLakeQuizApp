@@ -20,39 +20,51 @@ Simple and user-friendly web interface
 ### 🖼️ Core Interface Views
 
 <details>
-<summary><b>🏠 Click to view Home Pages for guest and authenticated user</b></summary>
+<summary><b>🏠 Home Page (Guest vs Authenticated)</b></summary>
 
-![Front Page](.github/assets/FrontPage.png)
-![Front Page](.github/assets/FrontPage_LoggedUser.png)
+###  Guest View
+![Home Page - Guest](.github/assets/FrontPage.png)
+
+###  Authenticated View
+![Home Page - Logged In](.github/assets/FrontPage_LoggedUser.png)
+
 </details>
 
 <details>
-<summary><b>🔍 Click to view Lake Browsing Page</b></summary>
+<summary><b>🔍 Lake Browsing Page</b></summary>
 
+### List view with search functionality
 ![Lake Browsing Page](.github/assets/LakeBrowsingPage.png)
 </details>
 
 <details>
-<summary><b>✍️ Click to view Quiz Page</b></summary>
-
+<summary><b>✍️ Quiz Page</b></summary>
+    
+### Two states of the same quiz (top view and scrolled view)
 ![Quiz Page 1](.github/assets/Quiz_1.png)
 ![Quiz Page 2](.github/assets/Quiz_2.png)
 </details>
 
 <details>
-<summary><b>🏆 Click to view Quiz Results Page and Saved Results Page (for logged in user)</b></summary>
+<summary><b>🏆 Quiz Results Page and Saved Results Page (for logged in user)</b></summary>
 
+###  View Displayed for both Guests and Authenticated Users
 ![Results Page](.github/assets/QuizResults.png)
+
+###  View of saved results that only Authenticated Users have access to
 ![Saved Results Page](.github/assets/QuizResults_SavedForUser.png)
 </details>
 
 <details>
-<summary><b>🔐 Click to view SignUp and SignIn Pages</b></summary>
+<summary><b>🔐 Authentication Pages (Sign Up & Sign In)</b></summary>
 
-![Front Page](.github/assets/SignUp.png)
-![Front Page](.github/assets/SignIn.png)
+### Sign Up Page
+![Sign Up Page](.github/assets/SignUp.png)
+
+### Sign In Page
+![Sign In Page](.github/assets/SignIn.png)
+
 </details>
-
 
 ### 🚀 Local Setup
 
