@@ -90,6 +90,7 @@ def quiz_lakes(request):
             Lake.objects
             .exclude(country=question.country)
             .values_list('country', flat=True)
+            .order_by('country')
             .distinct()
         )
 

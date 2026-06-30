@@ -77,7 +77,6 @@ WSGI_APPLICATION = 'worldLakeQuizApp.wsgi.application'
 #     }
 # }
 
-os.environ['TNS_ADMIN'] = config('TNS_ADMIN')
 
 # Using Oracle ATP database (low connection profile)
 DATABASES = {

@@ -313,6 +313,12 @@ input {
     color: #cccccc;
 }
 
+.help ul ,
+.help li {
+    font-size: inherit;
+}
+
+
 .btn-primary {
     width: 100%;
     padding: 12px;
