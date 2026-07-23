@@ -24,18 +24,20 @@
 </table>
 
 {# Table displaying list of lakes with name and country #}
-<div class="table-wrapper">
-    <table class="content-table"><thead>
-        <tr>
-            <th class="content-table-row">Lake Name</th>
-            <th class="content-table-row">Country</th>
-        </tr></thead>
+<div class="table-responsive">
+    <table class="table table-hover align-middle content-table">
+        <thead>
+            <tr>
+                <th>Lake Name</th>
+                <th>Country</th>
+            </tr>
+        </thead>
         <tbody>
             
             {% for lake in lakes %}
             <tr>
-                <td class="content-table-row">{{ lake.name }}</td>
-                <td class="content-table-row">{{ lake.country }}</td>
+                <td>{{ lake.name }}</td>
+                <td>{{ lake.country }}</td>
             </tr>
             {% empty %}
             <tr>

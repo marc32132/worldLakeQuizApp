@@ -1,20 +1,22 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 body {
-    min-height: 100vh;
-    font-size: 3rem;
+    
+    /* font-size: 3rem;
     background-color: black;
-    color: whitesmoke;
+    color: whitesmoke; */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: url("/static/images/background.jpg") no-repeat center center/cover;
 }
 
 
-nav {
+/* nav {
     width: 100%;
     background-color: #44B78B;
     color: white;
@@ -23,44 +25,52 @@ nav {
     border: none;
     border-radius: 0;
     box-shadow: none;
-}
+} */
 
 .footer {
-    width: 100%;
-    background-color: rgb(22, 201, 255);
+    /* width: 100%; */
+    background-color: rgb(22, 146, 184);
     color: white;
     text-align: center;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+    /* margin-top: auto;
+    margin-bottom: 0; */
+    /* padding: 1rem ; */
+    /* border: none; */
+    /* border-radius: 0; */
+    /* box-shadow: none; */
 }
 
 
-.page-wrapper {
+/* .page-wrapper {
+    flex: 1;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 1rem;
-    background: url("/static/images/background.jpg") no-repeat center center/cover;
-}
+ 
+} */
 
 
 .content-card {
     background: rgba(122, 122, 122, 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 16px;
-    width: 60%;
+    /* padding: 40px; */
+    border-radius: 20px;
+    min-width: 40%;
     max-width: 1200px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18); */
 }
 
 .home-page {
     text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  font-size: 1.5rem;
 }
 
 #searchForm {
@@ -97,7 +107,7 @@ p {
 
 a {
     text-decoration: none;
-    color: #FFD166;
+    color: #a57608;
 }
 
 a:hover {
@@ -113,27 +123,42 @@ h3 {
     overflow-x: auto;
 }
 
-.content-table {
+/* .content-table {
+    background: rgba(255,255,255,.30);
     border-collapse: separate;
     border-spacing:0;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
-    border-radius: 8px; /* rounded table corners */
+    border-radius: 8px; --note:rounded table corners
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .content-table th{
     background: linear-gradient(90deg, #0f4988, #1a5bb8);
     color: white;
     font-weight: 600;
-    text-align: left;
-    padding: 12px 15px;
-    position: sticky; 
-    top: 0;
+    text-align: center;
+    padding: 15px;
+    /* position: sticky;  */
+    /* top: 0; */
 }
 
-.content-table td{
+/* .table-responsive{
+    border-radius: 15px;
+    overflow: hidden;
+} */
+
+.content-table td {
+    background: rgba(255,255,255,.18);
+}
+
+
+.content-table td, .content-table th {
+    border-color: rgba(255,255,255,.15);
+}
+
+/* .content-table td{
     background-color: rgba(255, 255, 255, 0.9);
     color: #333;
     padding: 12px 15px;
@@ -148,19 +173,21 @@ h3 {
 
 .content-table tr:hover td {
     background-color: rgba(200, 230, 255, 0.6);
-}
+} */
 
 .content-table tr:first-child th:first-child {
-    border-top-left-radius: 8px;
+    border-top-left-radius: 12px;
 }
 .content-table tr:first-child th:last-child {
-    border-top-right-radius: 8px;
+    border-top-right-radius: 12px;
 }
 .content-table tr:last-child td:first-child {
-    border-bottom-left-radius: 8px;
+    border-bottom-left-radius: 12px;
+    border-bottom: none;
 }
 .content-table tr:last-child td:last-child {
-    border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 12px;
+    border-bottom: none;
 }
 
 .pagination-table {
@@ -170,8 +197,11 @@ h3 {
     margin: 1rem;
     font-size: 2rem;
 } 
-.pagination-table a {
+.pagination-table a, 
+.pagination-table a:visited {
     cursor: pointer;
+    text-decoration: none;
+    color: #a57608 !important;
 }
 
 
@@ -345,12 +375,9 @@ input {
     cursor: not-allowed;
 }
 
-ul {
-  list-style-type: none;
-  font-size: 2rem;
-}
 
-@media (max-width: 768px) {
+
+/* @media (max-width: 768px) {
     nav, .footer {
         font-size: 2rem;
         padding: 1rem;
@@ -476,4 +503,4 @@ ul {
         border-radius: 6px;
         text-align: center;
     }
-}
+} */
