@@ -107,7 +107,10 @@ p {
 
 a {
     text-decoration: none;
-    color: #a57608;
+    /* color: #a57608; */
+    color:rgba(252, 219, 164, 0.829);
+    cursor: pointer;
+    font-weight: 600;
 }
 
 a:hover {
@@ -123,16 +126,17 @@ h3 {
     overflow-x: auto;
 }
 
-/* .content-table {
-    background: rgba(255,255,255,.30);
+.content-table {
+    table-layout: fixed;
+    /* background: rgba(255,255,255,.30);
     border-collapse: separate;
     border-spacing:0;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
     border-radius: 8px; --note:rounded table corners
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-} */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+}
 
 .content-table th{
     background: linear-gradient(90deg, #0f4988, #1a5bb8);
@@ -140,6 +144,7 @@ h3 {
     font-weight: 600;
     text-align: center;
     padding: 15px;
+    
     /* position: sticky;  */
     /* top: 0; */
 }
@@ -151,6 +156,7 @@ h3 {
 
 .content-table td {
     background: rgba(255,255,255,.18);
+    color: whitesmoke;
 }
 
 
@@ -189,6 +195,17 @@ h3 {
     border-bottom-right-radius: 12px;
     border-bottom: none;
 }
+
+/* .pagination {
+    background: rgba(255,255,255,.15);
+    border: none;
+    color: #a57608;
+    backdrop-filter: blur(5px);
+} */
+
+/* .pagination .page-link:hover {
+    background: rgba(255,255,255,.28);
+}  */
 
 .pagination-table {
     width: 100%;
