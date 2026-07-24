@@ -31,7 +31,7 @@ body {
     /* width: 100%; */
     background-color: rgb(22, 146, 184);
     color: white;
-    text-align: center;
+    /* text-align: center; */
     /* margin-top: auto;
     margin-bottom: 0; */
     /* padding: 1rem ; */
@@ -101,9 +101,9 @@ ul {
     font-style: italic;
 }
 
-p {
+/* p {
     font-size: 2rem;
-}
+} */
 
 a {
     text-decoration: none;
@@ -117,9 +117,9 @@ a:hover {
     opacity: .85;
 }
 
-h3 {
+/* h3 {
     font-size: 2.5rem;
-}
+} */
 
 .table-wrapper {
     width: 100%;
@@ -207,7 +207,7 @@ h3 {
     background: rgba(255,255,255,.28);
 }  */
 
-.pagination-table {
+/* .pagination-table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
@@ -219,7 +219,7 @@ h3 {
     cursor: pointer;
     text-decoration: none;
     color: #a57608 !important;
-}
+} */
 
 
 .quiz-form {
@@ -258,7 +258,7 @@ h3 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-size: 2rem;
+    /* font-size: 2rem; */
 }
 
 .answer-container input {
@@ -269,10 +269,10 @@ h3 {
 
 .checkmark {
     position: absolute;
-    top: 30%;
+    top: 10%;
     left: 0;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     background-color: #eee;
     border-radius: 50%;
 }
@@ -296,10 +296,10 @@ h3 {
 }
 
 .answer-container .checkmark:after {
- 	top: 9px;
-	left: 9px;
-	width: 8px;
-	height: 8px;
+ 	top: 5px;
+	left: 5px;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
 	background: white;
 }

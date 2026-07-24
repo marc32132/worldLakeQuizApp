@@ -25,8 +25,8 @@ def lake_info(request):
             Q(country__icontains=query)
         )
 
-    # Paginate results (20 lakes per page)
-    p = Paginator(lakes, 20)
+    # Paginate results (30 lakes per page)
+    p = Paginator(lakes, 30)
     page_num = request.GET.get('page', 1)
     
     # Try to get requested page; fallback to page 1 if invalid

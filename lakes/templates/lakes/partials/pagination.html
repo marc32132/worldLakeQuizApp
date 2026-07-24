@@ -1,0 +1,31 @@
+<nav aria-label="Lake pages" class="d-flex justify-content-center align-items-center gap-5">
+        <div>
+            {% if lakes.has_previous %}
+                <a  
+                    class="fs-4 fw-semibold text-decoration-none"
+                    hx-get="?page={{ lakes.previous_page_number }}&q={{ query }}"
+                    hx-target="#tableContainer"
+                    hx-push-url="true">
+                        ← Previous
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="col-4 text-center">
+            <span class="fs-6">
+                Page {{ lakes.number }} of {{ lakes.paginator.num_pages }}
+            </span>
+        </div>
+
+        <div>
+            {% if lakes.has_next %}
+                <a  
+                    class="fs-4 fw-semibold text-decoration-none"         
+                    hx-get="?page={{ lakes.next_page_number }}&q={{ query }}"
+                    hx-target="#tableContainer"
+                    hx-push-url="true">
+                        Next →
+                </a>
+            {% endif %}
+        </div>
+</nav>

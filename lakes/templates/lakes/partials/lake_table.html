@@ -1,38 +1,9 @@
 {# Pagination Controls (top of page) #} 
-<nav aria-label="Lake pages" class="d-flex justify-content-center align-items-center gap-5 mt-">
-        <div>
-            {% if lakes.has_previous %}
-                <a  
-                    class="fs-4 fw-semibold text-decoration-none"
-                    hx-get="?page={{ lakes.previous_page_number }}&q={{ query }}"
-                    hx-target="#tableContainer"
-                    hx-push-url="true">
-                        ← Previous
-                </a>
-            {% endif %}
-        </div>
+<div class="my-4">
+    {% include "lakes/partials/pagination.html" %}
+</div>
 
-        <div class="col-4 text-center">
-            <span class="fs-6">
-                Page {{ lakes.number }} of {{ lakes.paginator.num_pages }}
-            </span>
-        </div>
-
-        <div>
-            {% if lakes.has_next %}
-                <a  
-                    class="fs-4 fw-semibold text-decoration-none"         
-                    hx-get="?page={{ lakes.next_page_number }}&q={{ query }}"
-                    hx-target="#tableContainer"
-                    hx-push-url="true">
-                        Next →
-                </a>
-            {% endif %}
-        </div>
-</nav>
-
-
-{# Table displaying list of lakes with name and country #}
+{# Table displaying list of lakes with name and country columns #}
 <div class="table-responsive">
     <table class="table table-hover align-middle content-table">
         <thead>
@@ -59,34 +30,6 @@
 </div>
 
 {# Pagination Controls (bottom of page) #}
-<nav aria-label="Lake pages" class="d-flex justify-content-center align-items-center gap-5 mt-">
-        <div>
-            {% if lakes.has_previous %}
-                <a  
-                    class="fs-4 fw-semibold text-decoration-none"
-                    hx-get="?page={{ lakes.previous_page_number }}&q={{ query }}"
-                    hx-target="#tableContainer"
-                    hx-push-url="true">
-                        ← Previous
-                </a>
-            {% endif %}
-        </div>
-
-        <div class="col-4 text-center">
-            <span class="fs-6">
-                Page {{ lakes.number }} of {{ lakes.paginator.num_pages }}
-            </span>
-        </div>
-
-        <div>
-            {% if lakes.has_next %}
-                <a  
-                    class="fs-4 fw-semibold text-decoration-none"         
-                    hx-get="?page={{ lakes.next_page_number }}&q={{ query }}"
-                    hx-target="#tableContainer"
-                    hx-push-url="true">
-                        Next →
-                </a>
-            {% endif %}
-        </div>
-</nav>
+<div class="mt-3">
+    {% include "lakes/partials/pagination.html" %}
+</div>
