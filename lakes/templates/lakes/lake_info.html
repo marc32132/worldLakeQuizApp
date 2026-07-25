@@ -7,8 +7,12 @@
 {% block content %}
 
     {# Search bar with HTMX live search #}
-    <form method="get" id="searchForm">
+    <form 
+        method="get" 
+        id="searchForm"
+        class="mx-auto w-75 my-3">
         <input 
+            class="form-control search-input"
             type="text" 
             name="q" 
             placeholder="Search lakes..." 

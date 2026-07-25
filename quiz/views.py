@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage
 import random
 from lakes.models import Lake
-from .models import QuizResult, QuizAnswer
+from .models import QuizResult
 
 # Number of quiz questionst per session
 QUESTIONS_NUM = 5
@@ -137,10 +138,25 @@ def saved_results(request):
     results = QuizResult.objects.filter(
         user=request.user
     ).order_by("-created_at")
+    
+    # Paginate results (10 results per page)
+    p = Paginator(results, 10)
+    page_num = request.GET.get('page', 1)
+    
+    # Try to get requested page; fallback to page 1 if invalid
+    try:
+        page = p.page(page_num)
+    except EmptyPage:
+        page = p.page(1)
 
-    return render(request, "quiz/saved_results.html", {
-        "results": results
-    })
+    context = {
+        "results": results,
+        "paginated_results": page
+    }
+    if request.headers.get("HX-Request"):
+        return render(request, "quiz/partials/results_history.html", context)
+
+    return render(request, "quiz/saved_results.html", context)
 
 @login_required
 def result_detail(request, result_id):
@@ -149,6 +165,7 @@ def result_detail(request, result_id):
         id=result_id,
         user=request.user
     )
+
 
     return render(request, "quiz/result_detail.html", {
         "result": result

@@ -56,6 +56,7 @@ body {
     background: rgba(122, 122, 122, 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    color: rgba(255,255,255,.85);
     /* padding: 40px; */
     border-radius: 20px;
     min-width: 40%;
@@ -74,29 +75,29 @@ ul {
 }
 
 #searchForm {
-    width: 100%;
-    max-width: 500px;       
-    margin: 1rem auto;     
+    /* width: 100%; */
+    max-width: 400px;       
+    /* margin: 1rem auto;      */
 }
 
-#searchForm input[type="text"] {
-    width: 100%;
-    padding: 0.75rem 1rem;
+.search-input {
+    /* width: 100%; */
+    padding: .75rem 1rem;
     border: none;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.85); 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-size: 1rem;
+    /* font-size: 1rem; */
     transition: all 0.3s ease;
-    outline: none;          
+    /* outline: none;           */
 }
 
-#searchForm input[type="text"]:focus {
+.search-input:focus {
     background: rgba(255, 255, 255, 1);
     box-shadow: 0 0 0 3px rgba(68, 183, 139, 0.5); 
 }
 
-#searchForm input[type="text"]::placeholder {
+.search-input::placeholder {
     color: #888;
     font-style: italic;
 }
@@ -121,10 +122,10 @@ a:hover {
     font-size: 2.5rem;
 } */
 
-.table-wrapper {
+/* .table-wrapper {
     width: 100%;
     overflow-x: auto;
-}
+} */
 
 .content-table {
     table-layout: fixed;
@@ -222,9 +223,9 @@ a:hover {
 } */
 
 
-.quiz-form {
+/* .quiz-form {
     padding-bottom: 100px;
-}
+} */
 
 .quiz-lake-name {
     color:#44B78B;
@@ -233,30 +234,30 @@ a:hover {
 
 .form-submit {
     position: sticky;
-    bottom: 30px; 
+    bottom: 2rem; 
     float: right;
-    font-family: 'Arial', sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;  
-    padding: 0.5rem;
-    border-radius: 10px;
+    /* font-family: 'Arial', sans-serif; */
+    /* font-size: 1.5rem;
+    font-weight: bold;   */
+    /* padding: 0.5rem; */
+    /* border-radius: 10px; */
     width: 200px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
-.form-submit:hover {
+/* .form-submit:hover {
     opacity: .85;
-}
+} */
 
 .answer-container {
     display: block;
     position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
+    padding-left: 2rem;
+    margin-bottom: .75rem;
     cursor: pointer;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     user-select: none;
     /* font-size: 2rem; */
 }
@@ -269,10 +270,15 @@ a:hover {
 
 .checkmark {
     position: absolute;
-    top: 10%;
+    /* top: 10%; */
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
-    height: 20px;
-    width: 20px;
+    height: 1.25rem;
+    width: 1.25rem;
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
     background-color: #eee;
     border-radius: 50%;
 }
@@ -281,40 +287,59 @@ a:hover {
     opacity: .85;
 }
 
+.answer-container input:focus ~ .checkmark {
+    outline: 2px solid #44B78B;
+}
+
 .answer-container input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #0e77cc;
 }
 
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: .5rem;
+	height: .5rem;
+	border-radius: 50%;
+	background: white;
 }
 
 .answer-container input:checked ~ .checkmark:after {
     display: block;
 }
 
-.answer-container .checkmark:after {
- 	top: 5px;
-	left: 5px;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	background: white;
+.quiz-history .list-group-item{
+    background: rgba(255,255,255,.10);
+    color: rgba(255,255,255,.9);
+
+    border-color: rgba(255,255,255,.15);
 }
 
-a.try-again {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1rem;
-        font-size: 2rem;
-        text-decoration: none;
-        background-color: #44B78B;
-        color: white;
-        border-radius: 6px;
-        text-align: center;
-}
+/* .answer-container .checkmark:after {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: white;
+} */
+
+/* a.try-again {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    background-color: #44B78B;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+} */
 
 .logout-btn {
     background: none;

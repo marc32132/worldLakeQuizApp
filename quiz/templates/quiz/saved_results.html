@@ -1,23 +1,26 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
-<h4>My Quiz History</h4>
-<br>
+<h2 class="mb-4">
+    My Quiz History
+</h2>
+<span class="badge bg-success">
+    {{ results|length }} quizzes
+</span>
 {% if results %}
-
-    <ul>
-        {% for result in results %}
-            <li>
-                <a href="{% url 'quiz:result_detail' result.id %}">
-                    {{ result.score }}/{{ result.total }} - {{ result.created_at|date:"Y-m-d H:i" }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-
+    <div id="resultsContainer">
+        {% include "quiz/partials/results_history.html" %}
+    </div>
+    <p class="mt-3 ms-auto text-light">
+        10 results per page
+    </p>
+    
 {% else %}
-    <p>You have no saved results yet.</p>
+    <p class="text-center text-light my-5">
+        You have no saved results yet.
+    </p>
 {% endif %}
+
+
 
 {% endblock %}
