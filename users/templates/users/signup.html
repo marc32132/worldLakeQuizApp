@@ -1,56 +1,69 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h4>Sign up</h4>
+
+<div class="mx-auto form">
+    <h2 class="mb-2">
+        Create an Account
+    </h2>
 
 
-<form method="post" class="form">
-    {% csrf_token %}
+    <form method="post">
+        {% csrf_token %}
 
-    {# Display general form errors (e.g. password mismatch) #}
-    {% if form.non_field_errors %}
-        <div class="error">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
+        {# Display general form errors (e.g. password mismatch) #}
+        {% if form.non_field_errors %}
+            <div class="text-danger small mt-1">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
 
-    {# Form field rendering #}
-    {% for field in form %}
+        {# Form field rendering #}
+        {% for field in form %}
 
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}">
-                {{ field.label }}
-            </label>
+            <div class="mb-3">
+                <label
+                    class="form-label" 
+                    for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
 
-            {{ field }}
+                {{ field }}
 
-            {# Display additional help text defined in the form (e.g. password rules) #}
-            {% if field.help_text %}
-                <small class="help">
-                    {{ field.help_text }}
-                </small>
-            {% endif %}
+                {# Display additional help text defined in the form (e.g. password rules) #}
+                {% comment %} {% if field.help_text %}
+                    <div class="form-text text-light small">
+                        {{ field.help_text }}
+                    </div>
+                {% endif %} {% endcomment %}
 
-            {# Display validation errors for this specific field #}
-            {% if field.errors %}
-                <div class="error">
-                    {% for error in field.errors %}
-                        {{ error }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
+                {# Display validation errors for this specific field #}
+                {% if field.errors %}
+                    <div class="text-danger small mt-1">
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
 
-    {% endfor %}
+        <button 
+            type="submit" 
+            class="btn btn-success btn-lg w-100">
+            Create Account
+        </button>
+    </form>
 
-    <button type="submit" class="btn-primary">Create account</button>
-</form>
 
-<br> 
+    <p class="text-center mt-4 mb-0">
+        Already have an account?
+        <a href="{% url 'users:login' %}">
+            Login here
+        </a>
+    </p>
 
-<p>
-    Already have an account?
-    <a href="{% url 'users:login' %}">Login here</a>
-</p>
+</div>
+
 
 {% endblock %}

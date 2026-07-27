@@ -73,6 +73,15 @@ ul {
   list-style-type: none;
   font-size: 1.5rem;
 }
+.form-text ul {
+    padding-left: 1.2rem;
+    margin-bottom: 0;
+}
+
+.form-text li {
+    margin-bottom: .25rem;
+    font-size: 0.9rem;
+}
 
 #searchForm {
     /* width: 100%; */
@@ -341,7 +350,7 @@ a:hover {
     text-align: center;
 } */
 
-.logout-btn {
+/* .logout-btn {
     background: none;
     border: none;
     text-decoration: none;
@@ -354,15 +363,15 @@ a:hover {
 
 .logout-btn:hover{
     opacity: .85;
-}
+} */
 
 
 .form {
     max-width: 400px;
-    margin: 40px auto;
+    /* margin: 40px auto; */
 }
 
-.form-group {
+/* .form-group {
     margin-bottom: 16px;
     display: flex;
     flex-direction: column;
@@ -388,10 +397,10 @@ input {
 .help ul ,
 .help li {
     font-size: inherit;
-}
+} */
 
 
-.btn-primary {
+/* .btn-primary {
     width: 100%;
     padding: 12px;
     background-color: #4f46e5;
@@ -415,7 +424,7 @@ input {
 .btn-primary:disabled {
     background-color: #a5a5a5;
     cursor: not-allowed;
-}
+} */
 
 
 

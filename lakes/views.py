@@ -27,13 +27,7 @@ def lake_info(request):
 
     # Paginate results (30 lakes per page)
     p = Paginator(lakes, 30)
-    page_num = request.GET.get('page', 1)
-    
-    # Try to get requested page; fallback to page 1 if invalid
-    try:
-        page = p.page(page_num)
-    except EmptyPage:
-        page = p.page(1)
+    page = p.get_page(request.GET.get("page"))
 
     context = {
         'lakes': page,

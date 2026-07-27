@@ -3,7 +3,7 @@
             {% if paginated_results.has_previous %}
                 <a  
                     class="fs-4 fw-semibold text-decoration-none"
-                    hx-get="?page={{ paginated_results.previous_page_number }}&q={{ query }}"
+                    hx-get="?page={{ paginated_results.previous_page_number }}"
                     hx-target="#resultsContainer"
                     hx-push-url="true">
                         ← Previous
@@ -21,7 +21,7 @@
             {% if paginated_results.has_next %}
                 <a  
                     class="fs-4 fw-semibold text-decoration-none"         
-                    hx-get="?page={{ paginated_results.next_page_number }}&q={{ query }}"
+                    hx-get="?page={{ paginated_results.next_page_number }}"
                     hx-target="#resultsContainer"
                     hx-push-url="true">
                         Next →

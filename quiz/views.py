@@ -141,13 +141,7 @@ def saved_results(request):
     
     # Paginate results (10 results per page)
     p = Paginator(results, 10)
-    page_num = request.GET.get('page', 1)
-    
-    # Try to get requested page; fallback to page 1 if invalid
-    try:
-        page = p.page(page_num)
-    except EmptyPage:
-        page = p.page(1)
+    page = p.get_page(request.GET.get("page"))
 
     context = {
         "results": results,

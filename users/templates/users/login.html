@@ -1,32 +1,56 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h4>Login</h4>
+<div class="mx-auto form">
+    <h2 class="mb-2">
+        Login
+    </h2>
 
-<form method="post" class="form">
-    {% csrf_token %}
 
-    {# Display general (non-field) errors, e.g. invalid login credentials #}
-    {% if form.non_field_errors %}
-        <div class="error">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
+    <form method="post">
+        {% csrf_token %}
 
-    {# Form field rendering #}
-    {% for field in form %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {# Display general form errors (e.g. password mismatch) #}
+        {% if form.non_field_errors %}
+            <div class="text-danger small mt-1">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
 
-            {{ field }}
+        {# Form field rendering #}
+        {% for field in form %}
 
-            {# Display validation errors for this specific field #}
-            {% for error in field.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-        </div>
-    {% endfor %}
+            <div class="mb-3">
+                <label
+                    class="form-label" 
+                    for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
 
-    <button type="submit" class="btn-primary">Login</button>
-</form>
+                {{ field }}
+
+                {# Display validation errors for this specific field #}
+                <div class="text-danger small mt-1">
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
+        <button 
+            type="submit" 
+            class="btn btn-success btn-lg w-100">
+            Login
+        </button>
+    </form>
+
+    <p class="text-center mt-4 mb-0">
+        Don't have an account?
+        <a href="{% url 'users:signup' %}">
+            Sign up
+        </a>
+    </p>
+
+</div>
 {% endblock %}
