@@ -1,21 +1,53 @@
 ## 🌍 Lakes of the World Quiz – Django App
 
-Description:
-A web application built with Django that allows users to take a quiz about lakes' location around the world. The data was collected from the International Lake Environment Committee Foundation. The quiz generates 5 questions with 4 multiple-choice answers. Users can also browse all lakes and their locations with a search function. It supports both guests and registered users.
+### ✨ Highlights
+
+- Django web application
+- Responsive Bootstrap 5 interface
+- User authentication
+- Oracle ATP and SQLite support
+- Dynamic quiz generation
+- Searchable lake database
+
+### 📖 Description  
+A Django web application that generates geography quizzes based on real-world lake data. Users can take randomized quizzes, browse a searchable database of lakes, and (when signed in) save their quiz results. The project demonstrates user authentication, relational data modeling, dynamic quiz generation, and responsive UI design using Bootstrap.
 
 ### 🛠 Technologies
 
-Backend: Python 3.11+, Django  
-Database: Oracle ATP / SQLite3 (optional)  
+#### Backend
+- Python 3.11+, 
+- Django  
+- Database: Oracle ATP / SQLite3 (optional)
+
+#### Frontend
+- HTML, 
+- CSS, 
+- Bootstrap 5
+
 Version control: Git  
 
 
 ### ⚡ Features
 
-Generates a quiz with 5 questions and 4 multiple-choice answers  
-Supports both guests and registered users  
-Browse all lakes and their locations with a search function  
-Simple and user-friendly web interface  
+- Randomized 5-question multiple-choice quiz
+- Searchable database of world lakes
+- User registration and authentication
+- Save quiz results to a personal account
+- Guest mode and authenticated mode
+- Responsive interface built with Bootstrap 5
+- Data imported from International Lake Environment Committee Foundation
+
+### 📁 Project structure
+
+worldLakeQuizApp/  
+├── worldLakeQuizApp/  
+├── users/  
+├── lakes/  
+├── quiz/  
+├── templates/  
+├── static/   
+└── manage.py  
+
 
 ### 🖼️ Core Interface Views
 
@@ -68,61 +100,52 @@ Simple and user-friendly web interface
 
 ### 🚀 Local Setup
 
-Clone the repository
+**Clone the repository**
 ```
 git clone https://github.com/marc32132/worldLakeQuizApp.git
 cd worldLakeQuizApp
 ```
-Create and activate a virtual environment
+**Create and activate a virtual environment**
 
 ```
 python -m venv venv 
 source venv/bin/activate  # Linux / macOS 
 venv\Scripts\activate     # Windows
 ```
-Install dependencies
+**Install dependencies**
 ```
 pip install -r requirements.txt
 ```
+
+**Create a `.env` file in the project root containing**
+
+```
+SECRET_KEY="your-secret-key"
+```
+
 ⚠️ **Database Setup Note**  
 
-- The app is configured to use **Oracle ATP** by default.  
-- To run locally with the included sample data, use **SQLite3** instead.  
-
-**Steps:**
-1. Open `worldLakeQuizApp/settings.py`.  
-2. Comment out the Oracle section and uncomment the SQLite3 section:
+To run the project locally with the included sample data, use **SQLite3** by adding the following to your `.env` file:
 
 ```
-# SQLite3 (for local testing with included data)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        ...
-    }
-}
-
-
-# Oracle (default)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        ...
-    }
-}
+USE_SQLITE=True
 ```
-Run the migrations and insert data:
+
+If `USE_SQLITE` is not specified (or is set to False), the application will use the Oracle ATP configuration.
+
+
+**Run the migrations and insert data**
 ```
 python manage.py migrate
 python manage.py import_csv
 ```
 
 
-Run the Django server
+**Run the Django server**
 ```
 python manage.py runserver
 ```
-Open your browser at: `http://127.0.0.1:8000/`
+**Open the application in your browser at: `http://127.0.0.1:8000/`**
 
 
 

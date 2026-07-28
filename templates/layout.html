@@ -44,6 +44,8 @@
                         </a>
                     </li>
 
+                    <div class="vr d-none d-lg-block me-3 my-auto text-light"></div>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'lakes:list' %}">
                             Lakes
@@ -52,6 +54,8 @@
 
 
                     {% if user.is_authenticated %}
+
+                        <div class="vr d-none d-lg-block ms-3 my-auto text-light"></div>
 
                         <li class="nav-item">
                             <a class="nav-link ps-lg-3 ms-lg-2" href="{% url 'quiz:saved_results' %}">
