@@ -5,18 +5,33 @@
 {% endblock %}
 
 {% block content %}
-<h4>Score: {{ result.score }} / {{ result.total }}</h4>
+<div class="text-center mb-4">
+    <h2 class="mb-4">
+        Score 
+        <p class="display-5 fw-bold text-success-mb-0">
+            {{ result.score }} / {{ result.total }}
+        </p>
+    </h2>
+</div>
+
 
 {% for a in result.answers.all %}
-    <p>
-        {{ a.question.name }} —
-        {% if a.is_correct %}
-            ✅ Correct ({{ a.correct_answer }})
-        {% else %}
-            ❌ Incorrect (You chose: {{ a.user_answer }}, Correct: {{ a.correct_answer }})
-        {% endif %}
-    </p>
-    <br>
+
+    <div class="border rounded p-3 mb-3">
+        <strong>{{ a.question.name }}</strong>
+        <div class="mt-2">
+            {% if a.is_correct %}
+            <span>
+                ✅ Correct ({{ a.correct_answer }})
+            </span>
+            {% else %}
+                <span>
+                ❌ Incorrect (You chose: {{ a.user_answer }}, Correct: {{ a.correct_answer }})
+                </span>
+            {% endif %}
+        </div>
+    </div>
+    
 {% endfor %}
 
 

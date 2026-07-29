@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <h2>World Lakes Quiz</h1>
+    <h2 class="mb-5">World Lakes Quiz</h2>
     
     {# Quiz form: displays multiple-choice questions dynamically from quiz_data #}
     <form class="quiz-form" method="post" action="{% url 'quiz:quiz_lakes' %}">
@@ -15,8 +15,8 @@
         {% for q in quiz_data %}
 
             {# Single question block #}
-            <div class="question-block">
-                <br><h3> {{ forloop.counter }}. What country is <span class="quiz-lake-name">{{ q.name }}</span> located in?</h3><br>
+            <div class="question-block mb-4">
+                <h4> {{ forloop.counter }}. What country is <span class="quiz-lake-name">{{ q.name }}</span> located in?</h4>
         
                 {% for option in q.options %}
                 <label class="answer-container">
@@ -27,7 +27,11 @@
                 {% endfor %}
             </div>
         {% endfor %}
-        <button class="form-submit">Submit</button>
+        <button 
+            class="btn btn-success gtn-lg form-submit"
+            type="submit">
+            Submit
+        </button>
     </form>
     
       

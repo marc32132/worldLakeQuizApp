@@ -1,128 +1,151 @@
 ## 🌍 Lakes of the World Quiz – Django App
 
-Description:
-A web application built with Django that allows users to take a quiz about lakes' location around the world. The data was collected from the International Lake Environment Committee Foundation. The quiz generates 5 questions with 4 multiple-choice answers. Users can also browse all lakes and their locations with a search function. It supports both guests and registered users.
+### ✨ Highlights
+
+- Django web application
+- Responsive Bootstrap 5 interface
+- User authentication
+- Oracle ATP and SQLite support
+- Dynamic quiz generation
+- Searchable lake database
+
+### 📖 Description  
+A Django web application that generates geography quizzes based on real-world lake data. Users can take randomized quizzes, browse a searchable database of lakes, and (when signed in) save their quiz results. The project demonstrates user authentication, relational data modeling, dynamic quiz generation, and responsive UI design using Bootstrap.
 
 ### 🛠 Technologies
 
-Backend: Python 3.11+, Django  
-Database: Oracle ATP / SQLite3 (optional)  
+#### Backend
+- Python 3.11+, 
+- Django  
+- Database: Oracle ATP / SQLite3 (optional)
+
+#### Frontend
+- HTML, 
+- CSS, 
+- Bootstrap 5
+
 Version control: Git  
 
 
 ### ⚡ Features
 
-Generates a quiz with 5 questions and 4 multiple-choice answers  
-Supports both guests and registered users  
-Browse all lakes and their locations with a search function  
-Simple and user-friendly web interface  
+- Randomized 5-question multiple-choice quiz
+- Searchable database of world lakes
+- User registration and authentication
+- Save quiz results to a personal account
+- Guest mode and authenticated mode
+- Responsive interface built with Bootstrap 5
+- Data imported from International Lake Environment Committee Foundation
+
+### 📁 Project structure
+
+worldLakeQuizApp/  
+├── worldLakeQuizApp/  
+├── users/  
+├── lakes/  
+├── quiz/  
+├── templates/  
+├── static/   
+└── manage.py  
+
 
 ### 🖼️ Core Interface Views
 
 <details>
-<summary><b>🏠 Home Page (Guest vs Authenticated)</b></summary>
+<summary><b>🏠 Home Page (Guest and Authenticated)</b></summary>
 
-###  Guest View
-![Home Page - Guest](.github/assets/FrontPage.png)
-
-###  Authenticated View
-![Home Page - Logged In](.github/assets/FrontPage_LoggedUser.png)
+<p align="center">
+  <img src=".github/assets/FrontPage.png" width="45%">
+  <img src=".github/assets/FrontPage_LoggedUser.png" width="45%">
+</p>
 
 </details>
 
 <details>
 <summary><b>🔍 Lake Browsing Page</b></summary>
 
-### List view with search functionality
-![Lake Browsing Page](.github/assets/LakeBrowsingPage.png)
+<img src=".github/assets/LakeBrowsingPage.png" width="80%">
+
 </details>
 
 <details>
 <summary><b>✍️ Quiz Page</b></summary>
     
-### Two states of the same quiz (top view and scrolled view)
-![Quiz Page 1](.github/assets/Quiz_1.png)
-![Quiz Page 2](.github/assets/Quiz_2.png)
+<p align="center">
+  <img src=".github/assets/Quiz_1.png" width="50%">
+  <img src=".github/assets/Quiz_2.png" width="50%">
+</p>
+
 </details>
 
 <details>
-<summary><b>🏆 Quiz Results Page and Saved Results Page (for logged in user)</b></summary>
+<summary><b>🏆 Quiz Results Page (for everyone) and Saved Results Page (for authenticated users only)</b></summary>
 
-###  View Displayed for both Guests and Authenticated Users
-![Results Page](.github/assets/QuizResults.png)
+<p align="center">
+  <img src=".github/assets/QuizResults.png" width="45%">
+  <img src=".github/assets/QuizResults_SavedForUser.png" width="45%">
+</p>
 
-###  View of saved results that only Authenticated Users have access to
-![Saved Results Page](.github/assets/QuizResults_SavedForUser.png)
 </details>
 
 <details>
 <summary><b>🔐 Authentication Pages (Sign Up & Sign In)</b></summary>
 
-### Sign Up Page
-![Sign Up Page](.github/assets/SignUp.png)
-
-### Sign In Page
-![Sign In Page](.github/assets/SignIn.png)
+<p align="center">
+  <img src=".github/assets/SignUp.png" width="45%">
+  <img src=".github/assets/SignIn.png" width="45%">
+</p>
 
 </details>
 
 ### 🚀 Local Setup
 
-Clone the repository
+**Clone the repository**
 ```
 git clone https://github.com/marc32132/worldLakeQuizApp.git
 cd worldLakeQuizApp
 ```
-Create and activate a virtual environment
+**Create and activate a virtual environment**
 
 ```
 python -m venv venv 
 source venv/bin/activate  # Linux / macOS 
 venv\Scripts\activate     # Windows
 ```
-Install dependencies
+**Install dependencies**
 ```
 pip install -r requirements.txt
 ```
+
+**Create a `.env` file in the project root containing**
+
+```
+SECRET_KEY="your-secret-key"
+```
+
 ⚠️ **Database Setup Note**  
 
-- The app is configured to use **Oracle ATP** by default.  
-- To run locally with the included sample data, use **SQLite3** instead.  
-
-**Steps:**
-1. Open `worldLakeQuizApp/settings.py`.  
-2. Comment out the Oracle section and uncomment the SQLite3 section:
+To run the project locally with the included sample data, use **SQLite3** by adding the following to your `.env` file:
 
 ```
-# SQLite3 (for local testing with included data)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        ...
-    }
-}
-
-
-# Oracle (default)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        ...
-    }
-}
+USE_SQLITE=True
 ```
-Run the migrations and insert data:
+
+If `USE_SQLITE` is not specified (or is set to False), the application will use the Oracle ATP configuration.
+
+
+**Run the migrations and insert data**
 ```
 python manage.py migrate
 python manage.py import_csv
 ```
 
 
-Run the Django server
+**Run the Django server**
 ```
 python manage.py runserver
 ```
-Open your browser at: `http://127.0.0.1:8000/`
+**Open the application in your browser at: `http://127.0.0.1:8000/`**
 
 
 

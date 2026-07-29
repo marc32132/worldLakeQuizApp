@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import CustomUserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
+
 
 def signup_view(request):
     """
@@ -28,28 +28,3 @@ def signup_view(request):
         form = CustomUserCreationForm()
 
     return render(request, 'users/signup.html', {'form': form})
-
-def login_view(request):
-    """
-    Handle user authentication (login).
-
-    - Redirects authenticated users to the home page
-    - Displays a login form on GET request
-    - Authenticates and logs in the user on successful POST
-    """
-    # Prevent logged-in users from accessing login page
-    if request.user.is_authenticated:
-        return redirect('home')
-
-    # Handle login form submission
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')
-    else:
-        form = AuthenticationForm()
-
-    return render(request, 'users/login.html', {'form': form})

@@ -5,23 +5,35 @@
 {% endblock %}
 
 {% block content %}
+<div class="text-center mb-4">
+    <h2 class="mb-4">
+        Your Score 
+        <p class="display-5 fw-bold text-success-mb-0">
+            {{ score }} / {{ total }}
+        </p>
+    </h2>
+</div>
 
-<h2>Your Score: {{ score }} / {{ total }}</h2>
 
 {% for r in results %}
 
     {# Display each question with user's answer status #}
-    <p>
-        {{ r.question }} —
-        {% if r.is_correct %}
-            ✅ Correct ({{ r.correct_answer }})
-        {% else %}
-            ❌ Incorrect (You chose: {{ r.user_answer }}, Correct: {{ r.correct_answer }})
-        {% endif %}
-    </p>
-    <br>
+    <div class="border rounded p-3 mb-3">
+        <strong>{{ r.question }}</strong>
+        <div class="mt-2">
+            {% if r.is_correct %}
+            <span>
+                ✅ Correct ({{ r.correct_answer }})
+            </span>
+            {% else %}
+                <span>
+                ❌ Incorrect (You chose: {{ r.user_answer }}, Correct: {{ r.correct_answer }})
+                </span>
+            {% endif %}
+        </div>
+    </div>
 {% endfor %}
 
-<a href="{% url 'quiz:quiz_lakes' %}" class="try-again">Try again</a>
+<a href="{% url 'quiz:quiz_lakes' %}" class="btn btn-success btn-lg mt-3 w-auto me-auto">Try again</a>
 
 {% endblock %}

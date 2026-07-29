@@ -1,41 +1,23 @@
 {# Pagination Controls (top of page) #} 
-<table class="pagination-table"><thead>
-    <tr>
-        <th>
-            {% if lakes.has_previous %}
-            <a  hx-get="?page={{ lakes.previous_page_number }}&q={{ query }}"
-                hx-target="#tableContainer"
-                hx-push-url="true">
-                    Previous Page
-            </a>
-            {% endif %}
-        </th>
-        <th>
-            {% if lakes.has_next %}
-            <a            
-                hx-get="?page={{ lakes.next_page_number }}&q={{ query }}"
-                hx-target="#tableContainer"
-                hx-push-url="true">
-                    Next Page
-            </a>
-            {% endif %}
-        </th>
-    </tr></thead>
-</table>
+<div class="my-4">
+    {% include "lakes/partials/pagination.html" %}
+</div>
 
-{# Table displaying list of lakes with name and country #}
-<div class="table-wrapper">
-    <table class="content-table"><thead>
-        <tr>
-            <th class="content-table-row">Lake Name</th>
-            <th class="content-table-row">Country</th>
-        </tr></thead>
+{# Table displaying list of lakes with name and country columns #}
+<div class="table-responsive">
+    <table class="table table-hover align-middle content-table">
+        <thead>
+            <tr>
+                <th>Lake Name</th>
+                <th>Country</th>
+            </tr>
+        </thead>
         <tbody>
             
             {% for lake in lakes %}
             <tr>
-                <td class="content-table-row">{{ lake.name }}</td>
-                <td class="content-table-row">{{ lake.country }}</td>
+                <td>{{ lake.name }}</td>
+                <td>{{ lake.country }}</td>
             </tr>
             {% empty %}
             <tr>
@@ -48,26 +30,6 @@
 </div>
 
 {# Pagination Controls (bottom of page) #}
-<table class="pagination-table"><thead>
-    <tr>
-        <th>
-            {% if lakes.has_previous %}
-            <a  hx-get="?page={{ lakes.previous_page_number }}&q={{ query }}"
-                hx-target="#tableContainer"
-                hx-push-url="true">
-                    Previous Page
-            </a>
-            {% endif %}
-        </th>
-        <th>
-            {% if lakes.has_next %}
-            <a            
-                hx-get="?page={{ lakes.next_page_number }}&q={{ query }}"
-                hx-target="#tableContainer"
-                hx-push-url="true">
-                    Next Page
-            </a>
-            {% endif %}
-        </th>
-    </tr></thead>
-</table>
+<div class="mt-3">
+    {% include "lakes/partials/pagination.html" %}
+</div>

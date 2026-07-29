@@ -1,0 +1,31 @@
+<nav aria-label="Lake pages" class="d-flex justify-content-center align-items-center gap-5">
+        <div>
+            {% if paginated_results.has_previous %}
+                <a  
+                    class="fs-4 fw-semibold text-decoration-none"
+                    hx-get="?page={{ paginated_results.previous_page_number }}"
+                    hx-target="#resultsContainer"
+                    hx-push-url="true">
+                        ← Previous
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="col-4 text-center">
+            <span class="fs-6">
+                Page {{ paginated_results.number }} of {{ paginated_results.paginator.num_pages }}
+            </span>
+        </div>
+
+        <div>
+            {% if paginated_results.has_next %}
+                <a  
+                    class="fs-4 fw-semibold text-decoration-none"         
+                    hx-get="?page={{ paginated_results.next_page_number }}"
+                    hx-target="#resultsContainer"
+                    hx-push-url="true">
+                        Next →
+                </a>
+            {% endif %}
+        </div>
+</nav>

@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@_c4m5v(r7@^gf_4pdm@n(5)fs21lrayy4q%a0gn$oqwq!p-jq'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -67,31 +67,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'worldLakeQuizApp.wsgi.application'
 
-
+USE_SQLITE = config("USE_SQLITE", default=False, cast=bool)
 # Database
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
-# Using Oracle ATP database (low connection profile)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': config('ORACLE_TNS'),
-        'USER': config('ORACLE_USER'),
-        'PASSWORD': config('ORACLE_PASSWORD'),
-        'OPTIONS': {
-            "config_dir": config('TNS_ADMIN'),
-            "wallet_location": config('TNS_ADMIN'),
-            "wallet_password": config('WALLET_PASSWORD'),
+if USE_SQLITE:
+    # Using default SQLite3 database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-}
+else:
+    # Using Oracle ATP database (low connection profile)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.oracle',
+            'NAME': config('ORACLE_TNS'),
+            'USER': config('ORACLE_USER'),
+            'PASSWORD': config('ORACLE_PASSWORD'),
+            'OPTIONS': {
+                "config_dir": config('TNS_ADMIN'),
+                "wallet_location": config('TNS_ADMIN'),
+                "wallet_password": config('WALLET_PASSWORD'),
+            }
+        }
+    }
 
 
 

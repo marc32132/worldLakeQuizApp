@@ -1,0 +1,20 @@
+<div class="my-3">
+    {% include "quiz/partials/pagination.html" %}
+</div>
+
+<div class="list-group quiz-history">
+
+    {% for result in paginated_results %}
+        <a 
+            href="{% url 'quiz:result_detail' result.id %}"
+            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <span>
+                {{ result.created_at|date:"Y-m-d H:i" }}    
+            </span>
+            <span class="badge bg-success rounded-pill">
+                {{ result.score }}/{{ result.total }} 
+            </span>
+        </a>
+    {% endfor %}
+
+</div>
