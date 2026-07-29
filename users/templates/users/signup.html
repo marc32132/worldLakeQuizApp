@@ -30,13 +30,6 @@
 
                 {{ field }}
 
-                {# Display additional help text defined in the form (e.g. password rules) #}
-                {% comment %} {% if field.help_text %}
-                    <div class="form-text text-light small">
-                        {{ field.help_text }}
-                    </div>
-                {% endif %} {% endcomment %}
-
                 {# Display validation errors for this specific field #}
                 {% if field.errors %}
                     <div class="text-danger small mt-1">
