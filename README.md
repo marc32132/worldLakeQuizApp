@@ -52,49 +52,49 @@ worldLakeQuizApp/
 ### 🖼️ Core Interface Views
 
 <details>
-<summary><b>🏠 Home Page (Guest vs Authenticated)</b></summary>
+<summary><b>🏠 Home Page (Guest and Authenticated)</b></summary>
 
-###  Guest View
-![Home Page - Guest](.github/assets/FrontPage.png)
-
-###  Authenticated View
-![Home Page - Logged In](.github/assets/FrontPage_LoggedUser.png)
+<p align="center">
+  <img src=".github/assets/FrontPage.png" width="45%">
+  <img src=".github/assets/FrontPage_LoggedUser.png" width="45%">
+</p>
 
 </details>
 
 <details>
 <summary><b>🔍 Lake Browsing Page</b></summary>
 
-### List view with search functionality
-![Lake Browsing Page](.github/assets/LakeBrowsingPage.png)
+<img src=".github/assets/LakeBrowsingPage.png" width="80%">
+
 </details>
 
 <details>
 <summary><b>✍️ Quiz Page</b></summary>
     
-### Two states of the same quiz (top view and scrolled view)
-![Quiz Page 1](.github/assets/Quiz_1.png)
-![Quiz Page 2](.github/assets/Quiz_2.png)
+<p align="center">
+  <img src=".github/assets/Quiz_1.png" width="50%">
+  <img src=".github/assets/Quiz_2.png" width="50%">
+</p>
+
 </details>
 
 <details>
-<summary><b>🏆 Quiz Results Page and Saved Results Page (for logged in user)</b></summary>
+<summary><b>🏆 Quiz Results Page (for everyone) and Saved Results Page (for authenticated users only)</b></summary>
 
-###  View Displayed for both Guests and Authenticated Users
-![Results Page](.github/assets/QuizResults.png)
+<p align="center">
+  <img src=".github/assets/QuizResults.png" width="45%">
+  <img src=".github/assets/QuizResults_SavedForUser.png" width="45%">
+</p>
 
-###  View of saved results that only Authenticated Users have access to
-![Saved Results Page](.github/assets/QuizResults_SavedForUser.png)
 </details>
 
 <details>
 <summary><b>🔐 Authentication Pages (Sign Up & Sign In)</b></summary>
 
-### Sign Up Page
-![Sign Up Page](.github/assets/SignUp.png)
-
-### Sign In Page
-![Sign In Page](.github/assets/SignIn.png)
+<p align="center">
+  <img src=".github/assets/SignUp.png" width="45%">
+  <img src=".github/assets/SignIn.png" width="45%">
+</p>
 
 </details>
 
