@@ -4,7 +4,7 @@ Project settings for World Lake Quiz.
 
 from pathlib import Path
 from decouple import config
-import os
+import sys
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,10 +67,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'worldLakeQuizApp.wsgi.application'
 
-USE_SQLITE = config("USE_SQLITE", default=False, cast=bool)
 # Database
+USE_SQLITE = config("USE_SQLITE", default=False, cast=bool)
+RUNNING_TESTS = 'test' in sys.argv
 
-if USE_SQLITE:
+if RUNNING_TESTS:
+    # Use an in-memory SQLite3 database during tests
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
+elif USE_SQLITE:
     # Using default SQLite3 database
     DATABASES = {
         'default': {

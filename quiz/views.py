@@ -24,27 +24,8 @@ def quiz_lakes(request):
         user_answers = request.POST
         correct_answers = request.session.get("correct_answers", {})
 
-        score = 0
-        results = []
-
-        # Compare user answers with correct ones stored in session
-        for q_id, correct_country in correct_answers.items():
-            user_answer = user_answers.get(q_id)
-            is_correct = user_answer == correct_country
-
-            if is_correct:
-                score += 1
-            
-            lake = Lake.objects.get(id=q_id)
-
-            # Store detailed result for each question
-            results.append({
-                "question": lake,
-                "user_answer": user_answer,
-                "correct_answer": correct_country,
-                "is_correct": is_correct
-                })
-        
+        # Calculate score
+        results, score = calculate_score(correct_answers, user_answers)
         total = len(correct_answers)
 
         # Save results to database
@@ -80,34 +61,7 @@ def quiz_lakes(request):
         return redirect("quiz:quiz_results")
 
     # Generate random questions
-    questions = list(Lake.objects.order_by('?')[:QUESTIONS_NUM])
-    quiz_data = []
-    correct_answers = {}
-
-    for question in questions:
-
-        # Get unique countries excluding the correct one
-        other_countries = list(
-            Lake.objects
-            .exclude(country=question.country)
-            .values_list('country', flat=True)
-            .order_by('country')
-            .distinct()
-        )
-
-        wrong_answers = random.sample(other_countries, OPTIONS_NUM - 1)
-
-        options = wrong_answers + [question.country]       
-        random.shuffle(options)
-
-        quiz_data.append({
-            "id": question.id,
-            "name": question.name,
-            "options": options,
-        })
-
-        # Store correct answer in session (key must be string for POST data matching)
-        correct_answers[str(question.id)] = question.country
+    quiz_data, correct_answers = generate_questions()
 
     # Save correct answers for later validation
     request.session["correct_answers"] = correct_answers
@@ -164,3 +118,63 @@ def result_detail(request, result_id):
     return render(request, "quiz/result_detail.html", {
         "result": result
     })
+
+def generate_questions():
+    # Generate random questions
+    questions = list(Lake.objects.order_by('?')[:QUESTIONS_NUM])
+    quiz_data = []
+    correct_answers = {}
+
+    for question in questions:
+
+        # Get unique countries excluding the correct one
+        other_countries = list(
+            Lake.objects
+            .exclude(country=question.country)
+            .values_list('country', flat=True)
+            .order_by('country')
+            .distinct()
+        )
+
+        wrong_answers = random.sample(other_countries, OPTIONS_NUM - 1)
+
+        options = wrong_answers + [question.country]       
+        random.shuffle(options)
+
+        quiz_data.append({
+            "id": question.id,
+            "name": question.name,
+            "options": options,
+        })
+
+        # Store correct answer in session (key must be string for POST data matching)
+        correct_answers[str(question.id)] = question.country
+
+    return quiz_data, correct_answers
+
+
+def calculate_score(correct_answers, user_answers):
+    score = 0
+    results = []
+
+    lakes = Lake.objects.in_bulk(correct_answers.keys())
+
+    # Compare user answers with correct ones stored in session
+    for q_id, correct_country in correct_answers.items():
+        user_answer = user_answers.get(q_id)
+        is_correct = user_answer == correct_country
+
+        if is_correct:
+            score += 1
+        
+        lake = lakes[int(q_id)]
+
+        # Store detailed result for each question
+        results.append({
+            "question": lake,
+            "user_answer": user_answer,
+            "correct_answer": correct_country,
+            "is_correct": is_correct
+            })
+        
+    return results, score
