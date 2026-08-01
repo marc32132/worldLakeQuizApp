@@ -71,7 +71,7 @@ class TestLakesPage(TestCase):
 
 
     def test_pagination_returns_correct_number_of_items_per_page(self):
-        """Verify that pagination limits items to 30 per page and splits content correctly."""
+        '''Verify that pagination limits items to 30 per page and splits content correctly.'''
 
         for i in range(30):
             Lake.objects.create(name=f"Extra Lake {i:02d}", country="Anywhere")
@@ -92,7 +92,7 @@ class TestLakesPage(TestCase):
         self.assertTrue(lakes_page_2.has_previous())
 
     def test_htmx_search_with_pagination_preserved(self):
-        """Verify that searching via HTMX preserves correct pagination behavior."""
+        '''Verify that searching via HTMX preserves correct pagination behavior.'''
 
         for i in range(35):
             Lake.objects.create(name=f"Filtered Lake {i:02d}", country="Anywhere")
