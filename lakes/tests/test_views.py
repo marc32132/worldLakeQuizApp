@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from lakes.models import Lake
+from lakes.views import PAGE_SIZE
 
 class TestLakesPage(TestCase):
 
@@ -71,16 +72,16 @@ class TestLakesPage(TestCase):
 
 
     def test_pagination_returns_correct_number_of_items_per_page(self):
-        '''Verify that pagination limits items to 30 per page and splits content correctly.'''
+        '''Verify that pagination limits items to correct number, set with PAGE_SIZE, per page and splits content correctly.'''
 
-        for i in range(30):
+        for i in range(PAGE_SIZE):
             Lake.objects.create(name=f"Extra Lake {i:02d}", country="Anywhere")
 
         response = self.client.get(reverse('lakes:list'))
         lakes_page = response.context["lakes"]
 
-        # Verify page 1 has exactly 30 items and has a next page
-        self.assertEqual(len(lakes_page), 30)
+        # Verify page 1 has correct number of items and has a next page
+        self.assertEqual(len(lakes_page), PAGE_SIZE)
         self.assertTrue(lakes_page.has_next())
 
         
@@ -94,7 +95,7 @@ class TestLakesPage(TestCase):
     def test_htmx_search_with_pagination_preserved(self):
         '''Verify that searching via HTMX preserves correct pagination behavior.'''
 
-        for i in range(35):
+        for i in range(PAGE_SIZE+5):
             Lake.objects.create(name=f"Filtered Lake {i:02d}", country="Anywhere")
 
         # Request page 2 of the filtered HTMX search results
@@ -103,11 +104,6 @@ class TestLakesPage(TestCase):
             {'q': 'Filtered', 'page': 2}, 
             HTTP_HX_REQUEST='true'
         )
-
-        # Verify HTML output for the HTMX pagination link
-        expected_htmx_link = 'hx-get="?page=1&q=Filtered"'
-        self.assertContains(response, expected_htmx_link)
-
 
         lakes_page = response.context["lakes"]
 

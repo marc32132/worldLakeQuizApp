@@ -5,11 +5,14 @@ import random
 from lakes.models import Lake
 from .models import QuizResult
 
-# Number of quiz questionst per session
+# Number of quiz questions per session
 QUESTIONS_NUM = 5
 
 # Number of quiz options per question
 OPTIONS_NUM = 4
+
+# Number of results displayed per page for authenticated user
+PAGE_SIZE = 10
 
 
 def quiz_lakes(request):
@@ -93,8 +96,7 @@ def saved_results(request):
         user=request.user
     ).order_by("-created_at")
     
-    # Paginate results (10 results per page)
-    p = Paginator(results, 10)
+    p = Paginator(results, PAGE_SIZE)
     page = p.get_page(request.GET.get("page"))
 
     context = {
