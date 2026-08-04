@@ -29,7 +29,6 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
-        print("CUSTOM FORM INIT")
         super().__init__(*args, **kwargs)
 
         self.fields["username"].widget.attrs.update({

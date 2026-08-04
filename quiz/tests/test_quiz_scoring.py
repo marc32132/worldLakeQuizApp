@@ -84,7 +84,7 @@ class TestScoreHandling(TestCase):
         for result in results:
             self.assertSetEqual(set(result.keys()), {"question", "user_answer", "correct_answer", "is_correct"})
 
-    def test_returned_results_do_not_miss_data(self):
+    def test_returned_results_contain_required_data(self):
         '''Verify that generated result entries contain all required data.'''
 
         user_answers = {
@@ -95,14 +95,14 @@ class TestScoreHandling(TestCase):
         results, _ = calculate_score(self.correct_answers,user_answers)
 
         for result in results:
-            # Verify that all of the quiz data is not None
+            # Verify that required fields are not None
             self.assertIsNotNone(result.get("question"))
             self.assertIsNotNone(result.get("correct_answer"))
             self.assertIsNotNone(result.get("is_correct"))
 
             self.assertIsInstance(result["is_correct"], bool)
 
-            # Verify that none of the data is an empty string
+            # Verify that string values are not empty
             self.assertTrue(len(str(result["question"]).strip()) > 0)
             self.assertTrue(len(str(result["correct_answer"]).strip()) > 0)
             if result["user_answer"] is not None:
@@ -113,8 +113,8 @@ class TestScoreHandling(TestCase):
         self.assertEqual(len(self.correct_answers), QUESTIONS_NUM)
         self.assertEqual(len(user_answers), QUESTIONS_NUM)
 
-    def test_consistency_if_the_returned_results(self):
-        '''Verify that results have been correctly evaluated'''
+    def test_returned_results_correctly_mark_answers(self):
+        '''Verify that each result correctly reflects whether the user's answer is correct.'''
 
         user_answers = {
             str(lake.id): lake.country if lake.id % 2 else None

@@ -79,6 +79,10 @@ if RUNNING_TESTS:
             'NAME': ':memory:',
         }
     }
+    # Change password hasher to increase the speed of tests
+    PASSWORD_HASHERS = [
+        "django.contrib.auth.hashers.MD5PasswordHasher",
+    ]
 elif USE_SQLITE:
     # Using default SQLite3 database
     DATABASES = {
@@ -151,5 +155,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication settings
 
+LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'users:login'
+LOGOUT_REDIRECT_URL = LOGIN_URL
