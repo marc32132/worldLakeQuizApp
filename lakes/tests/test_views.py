@@ -7,10 +7,10 @@ class TestLakesPage(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Lake.objects.create(name="C Lake", country="England")
-        Lake.objects.create(name="D Lake", country="Switzerland")
-        Lake.objects.create(name="B Lake", country="Germany")
-        Lake.objects.create(name="A Lake", country="Poland")
+        Lake.objects.create(name='C Lake', country='England')
+        Lake.objects.create(name='D Lake', country='Switzerland')
+        Lake.objects.create(name='B Lake', country='Germany')
+        Lake.objects.create(name='A Lake', country='Poland')
 
     def test_lakespage_status_code(self):
         '''Verify that the lakes list page loads successfully with a 200 OK status.'''
@@ -22,11 +22,11 @@ class TestLakesPage(TestCase):
         '''Verify that lakes are displayed in alphabetical order by default.'''
 
         response = self.client.get(reverse('lakes:list'))
-        returned_names = [lake.name for lake in response.context["lakes"]]
+        returned_names = [lake.name for lake in response.context['lakes']]
 
         self.assertEqual(
             returned_names,
-            ["A Lake", "B Lake", "C Lake", "D Lake"]
+            ['A Lake', 'B Lake', 'C Lake', 'D Lake']
         )
 
     def test_correct_templates_used_for_htmx_and_normal_requests(self):
@@ -45,29 +45,29 @@ class TestLakesPage(TestCase):
     def test_htmx_search_returns_filtered_results(self):
         '''Verify that searching via HTMX returns only the matching lakes.'''
 
-        response = self.client.get(reverse('lakes:list'), {'q': "Pol"}, HTTP_HX_REQUEST='true')
-        returned_names = [lake.name for lake in response.context["lakes"]]
+        response = self.client.get(reverse('lakes:list'), {'q': 'Pol'}, HTTP_HX_REQUEST='true')
+        returned_names = [lake.name for lake in response.context['lakes']]
 
-        self.assertEqual(returned_names, ["A Lake"])
+        self.assertEqual(returned_names, ['A Lake'])
 
     def test_htmx_search_no_results(self):
         '''Verify that searching for a non-existent phrase returns an empty list and a proper message.'''
 
-        response = self.client.get(reverse('lakes:list'), {'q': "Roz"}, HTTP_HX_REQUEST='true')
-        returned_names = [lake.name for lake in response.context["lakes"]]
+        response = self.client.get(reverse('lakes:list'), {'q': 'Roz'}, HTTP_HX_REQUEST='true')
+        returned_names = [lake.name for lake in response.context['lakes']]
 
         self.assertEqual(returned_names, [])
-        self.assertContains(response, "No results found")
+        self.assertContains(response, 'No results found')
 
     def test_htmx_search_empty_query_returns_all_lakes(self):
         '''Verify that an empty search query resets the filter and returns all lakes in alphabetical order.'''
 
-        response = self.client.get(reverse('lakes:list'), {'q': ""}, HTTP_HX_REQUEST='true')
-        returned_names = [lake.name for lake in response.context["lakes"]]
+        response = self.client.get(reverse('lakes:list'), {'q': ''}, HTTP_HX_REQUEST='true')
+        returned_names = [lake.name for lake in response.context['lakes']]
 
         self.assertEqual(
             returned_names,
-            ["A Lake", "B Lake", "C Lake", "D Lake"]
+            ['A Lake', 'B Lake', 'C Lake', 'D Lake']
         )
 
 
@@ -75,10 +75,10 @@ class TestLakesPage(TestCase):
         '''Verify that pagination limits items to correct number, set with PAGE_SIZE, per page and splits content correctly.'''
 
         for i in range(PAGE_SIZE):
-            Lake.objects.create(name=f"Extra Lake {i:02d}", country="Anywhere")
+            Lake.objects.create(name=f'Extra Lake {i:02d}', country='Anywhere')
 
         response = self.client.get(reverse('lakes:list'))
-        lakes_page = response.context["lakes"]
+        lakes_page = response.context['lakes']
 
         # Verify page 1 has correct number of items and has a next page
         self.assertEqual(len(lakes_page), PAGE_SIZE)
@@ -86,7 +86,7 @@ class TestLakesPage(TestCase):
 
         
         response_page_2 = self.client.get(reverse('lakes:list'), {'page': 2})
-        lakes_page_2 = response_page_2.context["lakes"]
+        lakes_page_2 = response_page_2.context['lakes']
 
         # Verify page 2 has exactly 4 items and has a previous page
         self.assertEqual(len(lakes_page_2), 4)
@@ -96,7 +96,7 @@ class TestLakesPage(TestCase):
         '''Verify that searching via HTMX preserves correct pagination behavior.'''
 
         for i in range(PAGE_SIZE+5):
-            Lake.objects.create(name=f"Filtered Lake {i:02d}", country="Anywhere")
+            Lake.objects.create(name=f'Filtered Lake {i:02d}', country='Anywhere')
 
         # Request page 2 of the filtered HTMX search results
         response = self.client.get(
@@ -105,7 +105,7 @@ class TestLakesPage(TestCase):
             HTTP_HX_REQUEST='true'
         )
 
-        lakes_page = response.context["lakes"]
+        lakes_page = response.context['lakes']
 
         # Verify page 2 has exactly 5 items and has a previous page
         self.assertEqual(len(lakes_page), 5)
@@ -115,4 +115,4 @@ class TestLakesPage(TestCase):
         # Verify that all items on page 2 actually match the search criteria
         returned_names = [lake.name for lake in lakes_page]
         for name in returned_names:
-            self.assertIn("Filtered", name)
+            self.assertIn('Filtered', name)

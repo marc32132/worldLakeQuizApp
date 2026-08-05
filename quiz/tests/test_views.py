@@ -7,6 +7,7 @@ from quiz.views import QUESTIONS_NUM, OPTIONS_NUM
 
 User = get_user_model()
 
+
 class TestQuizView(TestCase):
 
     @classmethod
@@ -43,7 +44,7 @@ class TestQuizView(TestCase):
 
         response = self.client.get(reverse('quiz:quiz_lakes'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "quiz/quiz_lakes.html")
+        self.assertTemplateUsed(response, 'quiz/quiz_lakes.html')
 
     def test_quiz_stores_correct_answers_in_the_session(self):
         '''Verify that correct_answers are stored in the session with expected data.'''
@@ -91,7 +92,7 @@ class TestQuizView(TestCase):
         self.assertEqual(quiz_result.total, QUESTIONS_NUM)
 
     def test_authenticated_users_create_quiz_answers(self):
-        '''Verify that authenticated users create QuizAnswer.'''
+        '''Verify that authenticated users create QuizAnswer records.'''
 
         self.client.force_login(self.user)
 
@@ -139,7 +140,7 @@ class TestQuizView(TestCase):
 
         self.client.post(reverse('quiz:quiz_lakes'), post_data)
 
-        results = self.client.session["quiz_results"]
+        results = self.client.session['quiz_results']
 
         self.assertEqual(results['score'], QUESTIONS_NUM)
         self.assertEqual(results['total'], QUESTIONS_NUM)

@@ -12,8 +12,8 @@ class TestScoreHandling(TestCase):
         for i in range(QUESTIONS_NUM*2):
             cls.lakes.append(
                 Lake.objects.create(
-                    name=f"Lake {i:02d}",
-                    country=f"Country {i:02d}",
+                    name=f'Lake {i:02d}',
+                    country=f'Country {i:02d}',
                 )
             )
         cls.correct_answers = {
@@ -82,7 +82,7 @@ class TestScoreHandling(TestCase):
         results, _ = calculate_score(self.correct_answers,user_answers)
 
         for result in results:
-            self.assertSetEqual(set(result.keys()), {"question", "user_answer", "correct_answer", "is_correct"})
+            self.assertSetEqual(set(result.keys()), {'question', 'user_answer', 'correct_answer', 'is_correct'})
 
     def test_returned_results_contain_required_data(self):
         '''Verify that generated result entries contain all required data.'''
@@ -96,17 +96,17 @@ class TestScoreHandling(TestCase):
 
         for result in results:
             # Verify that required fields are not None
-            self.assertIsNotNone(result.get("question"))
-            self.assertIsNotNone(result.get("correct_answer"))
-            self.assertIsNotNone(result.get("is_correct"))
+            self.assertIsNotNone(result.get('question'))
+            self.assertIsNotNone(result.get('correct_answer'))
+            self.assertIsNotNone(result.get('is_correct'))
 
-            self.assertIsInstance(result["is_correct"], bool)
+            self.assertIsInstance(result['is_correct'], bool)
 
             # Verify that string values are not empty
-            self.assertTrue(len(str(result["question"]).strip()) > 0)
-            self.assertTrue(len(str(result["correct_answer"]).strip()) > 0)
-            if result["user_answer"] is not None:
-                self.assertTrue(len(str(result["user_answer"]).strip()) > 0)
+            self.assertTrue(len(str(result['question']).strip()) > 0)
+            self.assertTrue(len(str(result['correct_answer']).strip()) > 0)
+            if result['user_answer'] is not None:
+                self.assertTrue(len(str(result['user_answer']).strip()) > 0)
 
         # Verify that length of the data matches the number of questions
         self.assertEqual(len(results), QUESTIONS_NUM)
@@ -124,7 +124,7 @@ class TestScoreHandling(TestCase):
         results, _ = calculate_score(self.correct_answers,user_answers)
 
         for result in results:
-            if result["user_answer"] == result["correct_answer"]:
-                self.assertTrue(result["is_correct"])
+            if result['user_answer'] == result['correct_answer']:
+                self.assertTrue(result['is_correct'])
             else:
-                self.assertFalse(result["is_correct"])
+                self.assertFalse(result['is_correct'])
