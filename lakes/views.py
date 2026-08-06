@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator, EmptyPage
+from django.core.paginator import Paginator
 from django.db.models import Q
 from .models import Lake
+
+# Number of lakes displayed per page
+PAGE_SIZE = 30
 
 
 def lake_info(request):
@@ -10,7 +13,7 @@ def lake_info(request):
     
     Supports:
     - GET parameter 'q' for case-insensitive filtering by name or country
-    - Pagination (20 lakes per page)
+    - Pagination (30 lakes per page)
     - HTMX requests to update just the table without full page reload
     """
 
@@ -25,8 +28,7 @@ def lake_info(request):
             Q(country__icontains=query)
         )
 
-    # Paginate results (30 lakes per page)
-    p = Paginator(lakes, 30)
+    p = Paginator(lakes, PAGE_SIZE)
     page = p.get_page(request.GET.get("page"))
 
     context = {

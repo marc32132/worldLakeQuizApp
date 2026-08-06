@@ -4,7 +4,7 @@ Project settings for World Lake Quiz.
 
 from pathlib import Path
 from decouple import config
-import os
+import sys
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,10 +67,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'worldLakeQuizApp.wsgi.application'
 
-USE_SQLITE = config("USE_SQLITE", default=False, cast=bool)
 # Database
+USE_SQLITE = config("USE_SQLITE", default=False, cast=bool)
+RUNNING_TESTS = 'test' in sys.argv
 
-if USE_SQLITE:
+if RUNNING_TESTS:
+    # Use an in-memory SQLite3 database during tests
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
+    # Change password hasher to increase the speed of tests
+    PASSWORD_HASHERS = [
+        "django.contrib.auth.hashers.MD5PasswordHasher",
+    ]
+elif USE_SQLITE:
     # Using default SQLite3 database
     DATABASES = {
         'default': {
@@ -142,5 +155,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication settings
 
+LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'users:login'
+LOGOUT_REDIRECT_URL = LOGIN_URL

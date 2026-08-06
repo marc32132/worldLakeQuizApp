@@ -21,7 +21,7 @@ class QuizResult(models.Model):
 class QuizAnswer(models.Model):
     result = models.ForeignKey(QuizResult, on_delete=models.CASCADE, related_name="answers")
 
-    question = models.ForeignKey(Lake, on_delete=models.CASCADE)
+    question = models.ForeignKey(Lake, on_delete=models.SET_NULL, null=True, blank=True)
     user_answer = models.CharField(max_length=100)
     correct_answer = models.CharField(max_length=100)
     is_correct = models.BooleanField()
