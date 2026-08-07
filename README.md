@@ -8,7 +8,7 @@
 - Oracle ATP and SQLite support
 - Dynamic quiz generation
 - Searchable lake database
-- 44 tests covering core application functionality
+- tests covering core application functionality
 
 ### 📖 Description  
 A Django web application that generates geography quizzes based on real-world lake data. Users can take randomized quizzes, browse a searchable database of lakes, and (when signed in) save their quiz results. The project demonstrates user authentication, relational data modeling, dynamic quiz generation, and responsive UI design using Bootstrap.
