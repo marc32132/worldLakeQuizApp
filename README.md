@@ -8,6 +8,7 @@
 - Oracle ATP and SQLite support
 - Dynamic quiz generation
 - Searchable lake database
+- 44 tests covering core application functionality
 
 ### 📖 Description  
 A Django web application that generates geography quizzes based on real-world lake data. Users can take randomized quizzes, browse a searchable database of lakes, and (when signed in) save their quiz results. The project demonstrates user authentication, relational data modeling, dynamic quiz generation, and responsive UI design using Bootstrap.
@@ -24,7 +25,8 @@ A Django web application that generates geography quizzes based on real-world la
 - CSS, 
 - Bootstrap 5
 
-Version control: Git  
+#### Other 
+- Git  
 
 
 ### ⚡ Features
@@ -38,16 +40,16 @@ Version control: Git
 - Data imported from International Lake Environment Committee Foundation
 
 ### 📁 Project structure
-
+```
 worldLakeQuizApp/  
-├── worldLakeQuizApp/  
-├── users/  
-├── lakes/  
-├── quiz/  
+├── worldLakeQuizApp/           # Project configuration
+├── users/                      # Authentication  
+├── lakes/                      # Lake data
+├── quiz/                       # Quiz logic
 ├── templates/  
 ├── static/   
 └── manage.py  
-
+```
 
 ### 🖼️ Core Interface Views
 
@@ -147,6 +149,23 @@ python manage.py runserver
 ```
 **Open the application in your browser at: `http://127.0.0.1:8000/`**
 
+
+### 🧪 Testing
+
+The project includes **44 tests** covering:
+
+- Models
+- Forms
+- Views
+- Authentication
+- Quiz generation
+- Search functionality
+
+Run the test suite with:
+
+```
+python manage.py test
+```
 
 
 
